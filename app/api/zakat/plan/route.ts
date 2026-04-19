@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     .select('id, user_id, zakat_amount, answers, zakat_plan, status')
     .eq('id', sessionId)
     .eq('user_id', user.id)
-    .single()
+    .single() as { data: { id: string; user_id: string; zakat_amount: number | null; answers: Record<string, unknown> | null; zakat_plan: ZakatPlan | null; status: string } | null; error: unknown }
 
   if (error || !session) {
     return Response.json({ error: 'Session not found' }, { status: 404 })
