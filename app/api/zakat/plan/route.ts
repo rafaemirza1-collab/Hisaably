@@ -84,7 +84,8 @@ export async function POST(request: Request) {
 
   await supabase
     .from('zakat_sessions')
-    .update({ zakat_plan: plan })
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    .update({ zakat_plan: plan } as any)
     .eq('id', sessionId)
 
   return Response.json(plan)
