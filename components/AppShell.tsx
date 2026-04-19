@@ -177,12 +177,13 @@ function AppShellInner({ children, locale, userName }: AppShellProps) {
       <style>{`
         @media (max-width: 768px) {
           .shell-sidebar { display: none !important; }
-          .shell-main { margin-left: 0 !important; }
+          .shell-main { margin-left: 0 !important; padding-bottom: 72px !important; }
           .shell-topbar { display: flex !important; }
         }
         @media (min-width: 769px) {
           .shell-topbar { display: none !important; }
           .shell-drawer { display: none !important; }
+          .shell-bottom-nav { display: none !important; }
         }
         .shell-nav-item-hover:hover { background: rgba(244,238,223,.05) !important; color: #F4EEDF !important; }
         @keyframes shell-drawer-in { from { transform: translateX(-100%); } to { transform: translateX(0); } }
@@ -233,7 +234,7 @@ function AppShellInner({ children, locale, userName }: AppShellProps) {
           {/* Panel */}
           <div className="shell-drawer-open" style={{
             position: 'absolute', top: 0, left: 0, bottom: 0,
-            width: SIDEBAR_W + 20,
+            width: 'min(280px, 82vw)',
             background: 'linear-gradient(180deg, #0D1F3E 0%, #070F22 100%)',
             borderRight: '1px solid rgba(212,175,106,.15)',
           }}>
@@ -247,6 +248,30 @@ function AppShellInner({ children, locale, userName }: AppShellProps) {
           </div>
         </div>
       )}
+
+      {/* ── Mobile bottom nav ── */}
+      <nav className="shell-bottom-nav" style={{
+        position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 100,
+        background: 'rgba(7,15,34,.96)', borderTop: '1px solid rgba(212,175,106,.12)',
+        backdropFilter: 'blur(16px)', display: 'flex', alignItems: 'stretch', height: 64,
+      }}>
+        {[
+          { icon: <IcoHome />, label: 'Home', href: `/${locale}/home`, active: isActive(`/${locale}/home`, true) },
+          { icon: <IcoResult />, label: 'Result', href: `/${locale}/results`, active: isActive(`/${locale}/results`, true) && !isHistoryTab },
+          { icon: <IcoHistory />, label: 'History', href: `/${locale}/results?tab=history`, active: isHistoryTab },
+          { icon: <IcoPlus />, label: 'New', href: `/${locale}/flow`, active: isActive(`/${locale}/flow`), emerald: true },
+        ].map(item => (
+          <a key={item.label} href={item.href} style={{
+            flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+            gap: 4, textDecoration: 'none', transition: 'color .15s',
+            color: item.active ? '#F4EEDF' : item.emerald ? 'rgba(16,185,129,.7)' : 'rgba(244,238,223,.4)',
+            borderTop: item.active ? '2px solid #D4AF6A' : '2px solid transparent',
+          }}>
+            <span style={{ color: item.active ? '#D4AF6A' : item.emerald ? '#10B981' : 'rgba(244,238,223,.4)' }}>{item.icon}</span>
+            <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: '.04em' }}>{item.label}</span>
+          </a>
+        ))}
+      </nav>
 
       {/* ── Main content ── */}
       <main

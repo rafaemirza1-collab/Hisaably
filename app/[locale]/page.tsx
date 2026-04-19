@@ -290,7 +290,35 @@ export default function LandingPage() {
         .lp-serif { font-family: 'Libre Caslon Text', Georgia, serif; }
         .lp-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
         .lp-wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
-        @media (max-width: 720px) { .lp-wrap { padding: 0 20px; } }
+        @media (max-width: 720px) { .lp-wrap { padding: 0 16px; } }
+        .lp-nav-links { display: flex; gap: 28px; }
+        .lp-nav-right { display: flex; align-items: center; gap: 14px; }
+        .lp-nisab-pill { display: inline-flex !important; }
+        .lp-hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 80px; align-items: center; }
+        .lp-hero-right { display: block; }
+        .lp-trust-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; }
+        .lp-how-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+        .lp-why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+        .lp-example-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; align-items: center; }
+        @media (max-width: 860px) {
+          .lp-hero-grid { grid-template-columns: 1fr; gap: 48px; }
+          .lp-hero-right { display: none; }
+          .lp-how-grid { grid-template-columns: 1fr; gap: 16px; }
+          .lp-why-grid { grid-template-columns: 1fr; gap: 14px; }
+          .lp-why-grid > * { grid-column: span 1 !important; }
+          .lp-example-grid { grid-template-columns: 1fr; gap: 32px; }
+          .lp-trust-grid { grid-template-columns: repeat(2,1fr); gap: 10px; }
+          .lp-nav-links { display: none; }
+          .lp-nisab-pill { display: none !important; }
+          .lp-hero-h1 { font-size: clamp(32px, 8vw, 52px) !important; }
+          .lp-hero-p { font-size: 16px !important; }
+          .lp-hero-cta-wrap { flex-direction: column !important; }
+          .lp-hero-cta-wrap a { width: 100% !important; justify-content: center !important; box-sizing: border-box !important; }
+          .lp-section-pad { padding-top: 56px !important; padding-bottom: 56px !important; }
+          .lp-step-pill { padding: 14px 16px !important; }
+          .lp-feat { padding: 20px !important; }
+          .lp-step-card { padding: 24px 20px 28px !important; }
+        }
         .lp-step-pill {
           position: relative; display: flex; align-items: center; gap: 16px;
           padding: 16px 18px; border: 1px solid var(--line); border-radius: 14px;
@@ -356,7 +384,7 @@ export default function LandingPage() {
                   <BrandMark size={28} />
                   <span className="lp-serif" style={{ fontSize: 20 }}>Hisaably</span>
                 </a>
-                <nav style={{ display: 'flex', gap: 28 }}>
+                <nav className="lp-nav-links">
                   {[['#how', 'How it works'], ['#why', 'Why Hisaably'], ['#faq', 'FAQ'], [`/${locale}/about`, 'About']].map(([href, label]) => (
                     <a key={href} href={href} style={{ color: 'var(--cream-60)', textDecoration: 'none', fontSize: 14, fontWeight: 500, transition: 'color .2s' }}
                       onMouseEnter={e => (e.currentTarget.style.color = 'var(--cream)')}
@@ -368,7 +396,7 @@ export default function LandingPage() {
               {/* Right */}
               <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
                 {nisabSilver && (
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 12, color: 'var(--cream-60)', padding: '6px 12px', borderRadius: 999, border: '1px solid var(--line)', background: 'rgba(13,31,62,.5)' }}>
+                  <span className="lp-nisab-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 12, color: 'var(--cream-60)', padding: '6px 12px', borderRadius: 999, border: '1px solid var(--line)', background: 'rgba(13,31,62,.5)' }}>
                     <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--emerald)', boxShadow: '0 0 0 4px rgba(16,185,129,.12)', display: 'inline-block' }} />
                     Live nisab connected
                   </span>
@@ -401,7 +429,7 @@ export default function LandingPage() {
             WebkitMaskImage: 'radial-gradient(ellipse at 80% 30%, #000 0%, transparent 60%)',
           }} />
           <div className="lp-wrap">
-            <div style={{ display: 'grid', gridTemplateColumns: '1.05fr 1fr', gap: 80, alignItems: 'center' }}>
+            <div className="lp-hero-grid">
               {/* Left */}
               <div>
                 <span style={{
@@ -414,18 +442,18 @@ export default function LandingPage() {
                   Year-round Zakat preparation
                 </span>
 
-                <h1 className="lp-serif" style={{
+                <h1 className="lp-serif lp-hero-h1" style={{
                   fontSize: 'clamp(44px, 5.6vw, 72px)', lineHeight: 1.04, letterSpacing: '-0.02em',
                   margin: '22px 0 24px', color: 'var(--cream)', fontWeight: 400,
                 }}>
                   Never be <em style={{ fontStyle: 'italic', color: 'var(--gold-soft)' }}>unprepared</em> for Zakat again.
                 </h1>
 
-                <p style={{ fontSize: 19, lineHeight: 1.6, color: 'var(--cream-60)', maxWidth: 560, marginBottom: 36 }}>
+                <p className="lp-hero-p" style={{ fontSize: 19, lineHeight: 1.6, color: 'var(--cream-60)', maxWidth: 560, marginBottom: 36 }}>
                   Hisaably helps you calculate, plan, and stay on track for Zakat — all year, not just once.
                 </p>
 
-                <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginBottom: 36 }}>
+                <div className="lp-hero-cta-wrap" style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginBottom: 36 }}>
                   {isLoggedIn ? (
                     <>
                       <a href={dashboardHref} style={{
@@ -489,7 +517,7 @@ export default function LandingPage() {
               </div>
 
               {/* Right — app frame */}
-              <div onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+              <div className="lp-hero-right" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
 
                 {/* Quranic quote — above the frame */}
                 <div style={{ textAlign: 'center', marginBottom: 28 }}>
@@ -559,7 +587,7 @@ export default function LandingPage() {
         {/* ─── TRUST STRIP ─── */}
         <div style={{ borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)', background: 'linear-gradient(180deg,rgba(13,31,62,.4),rgba(10,24,48,.2))', padding: '28px 0', position: 'relative', zIndex: 1 }}>
           <div className="lp-wrap">
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', gap: 32, alignItems: 'center' }}>
+            <div className="lp-trust-grid" style={{ gap: 32, alignItems: 'center' }}>
               {[
                 { Icon: IconShield, t: 'Built by Muslims' },
                 { Icon: IconSparkles, t: 'AI-powered assistant' },
@@ -586,7 +614,7 @@ export default function LandingPage() {
               </h2>
               <p style={{ fontSize: 17, color: 'var(--cream-60)', lineHeight: 1.6, maxWidth: 600, margin: 0 }}>Hisaably isn&apos;t a form you fill in. It&apos;s a guided conversation — your personal Zakat assistant that explains every step and answers every question.</p>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 24 }}>
+            <div className="lp-how-grid">
               {[
                 { Icon: IconWallet, t: 'Tell Hisaably about your wealth', d: "Cash, gold, silver, crypto, investments — your assistant guides you through each category, explaining what counts and why.", meta: 'avg. 4 min 12 sec' },
                 { Icon: IconScale, t: 'Get a precise, sourced result', d: 'Live nisab thresholds, debt deductions, madhab-aware rulings — Hisaably applies all of it and shows its working, line by line.', meta: 'calculated in real time' },
@@ -616,7 +644,7 @@ export default function LandingPage() {
               </h2>
               <p style={{ fontSize: 17, color: 'var(--cream-60)', lineHeight: 1.6, margin: 0 }}>Calculators give you a form. Hisaably gives you a conversation — guiding you through every ruling, explaining every number, and helping you plan your giving with confidence.</p>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gridAutoRows: 'minmax(200px,auto)', gap: 20 }}>
+            <div className="lp-why-grid" style={{ gridAutoRows: 'minmax(200px,auto)' }}>
               <div className="lp-feat hero-feat" style={{ gridColumn: 'span 2' }}>
                 <span style={{ width: 40, height: 40, borderRadius: 10, display: 'grid', placeItems: 'center', background: 'rgba(212,175,106,.14)', border: '1px solid var(--line)', color: 'var(--gold)', marginBottom: 20 }}><IconSparkles /></span>
                 <h4 className="lp-serif" style={{ fontSize: 26, fontWeight: 400, color: 'var(--cream)', margin: '0 0 8px', letterSpacing: '-0.01em' }}>An AI that explains every ruling — in plain language</h4>
@@ -642,7 +670,7 @@ export default function LandingPage() {
         {/* ─── EXAMPLE ─── */}
         <section id="example" style={{ paddingBottom: 112, position: 'relative', zIndex: 1 }}>
           <div className="lp-wrap">
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 72, alignItems: 'center' }}>
+            <div className="lp-example-grid" style={{ gap: 72 }}>
               <div>
                 <div style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: '.22em', color: 'var(--gold)', fontWeight: 600, marginBottom: 16 }}>An actual breakdown</div>
                 <h2 className="lp-serif" style={{ fontSize: 'clamp(32px,3.6vw,48px)', lineHeight: 1.1, letterSpacing: '-0.015em', color: 'var(--cream)', margin: '0 0 18px', fontWeight: 400 }}>

@@ -76,6 +76,8 @@ export default function HomePage() {
         @keyframes dash-fade-up { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
         .dash-fade-up { animation: dash-fade-up .45s cubic-bezier(.22,1,.36,1) both; }
         .dd1 { animation-delay: 0ms; } .dd2 { animation-delay: 80ms; } .dd3 { animation-delay: 160ms; } .dd4 { animation-delay: 240ms; }
+        .dash-quick-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+        @media (max-width: 480px) { .dash-quick-grid { grid-template-columns: 1fr 1fr; } }
       `}</style>
 
       <div style={{ maxWidth: 520, margin: '0 auto', padding: '52px 24px 48px' }}>
@@ -121,7 +123,7 @@ export default function HomePage() {
             </p>
             {label && <p style={{ color: 'rgba(244,238,223,.5)', fontSize: 13, marginBottom: 8 }}>&ldquo;{label}&rdquo;</p>}
             {meetsNisab ? (
-              <p style={{ fontFamily: "'Libre Caslon Text', Georgia, serif", fontSize: 'clamp(28px, 5vw, 42px)', fontWeight: 400, color: '#F4EEDF', lineHeight: 1.05, marginBottom: 6, letterSpacing: '-0.02em' }}>
+              <p style={{ fontFamily: "'Libre Caslon Text', Georgia, serif", fontSize: 'clamp(26px, 5vw, 42px)', fontWeight: 400, color: '#F4EEDF', lineHeight: 1.05, marginBottom: 6, letterSpacing: '-0.02em' }}>
                 {fmtAmount(zakatAmount, currency)}
               </p>
             ) : (
@@ -168,7 +170,7 @@ export default function HomePage() {
         )}
 
         {/* Quick actions */}
-        <div className="dash-fade-up dd4" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
+        <div className="dash-fade-up dd4 dash-quick-grid">
           <a href={`/${locale}/flow?new=1`} className="dash-action emerald" style={{ textAlign: 'center' }}>
             <p style={{ fontSize: 22, color: '#10B981', marginBottom: 8 }}>+</p>
             <p style={{ fontSize: 13, fontWeight: 600, color: '#F4EEDF', marginBottom: 2 }}>New calc</p>

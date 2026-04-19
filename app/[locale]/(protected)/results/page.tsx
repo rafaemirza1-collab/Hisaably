@@ -389,8 +389,18 @@ This report is for personal reference only. Consult a qualified scholar for your
       .results-page .rounded-lg { border-radius: 10px !important; }
       .results-page select { background: rgba(13,31,62,.8); border: 1px solid rgba(212,175,106,.2); color: #F4EEDF; border-radius: 8px; padding: 5px 10px; font-size: 12px; outline: none; }
       .results-page select option { background: #0A1830; }
+      @media (max-width: 600px) {
+        .results-page { padding: 20px 16px 48px !important; }
+        .results-page .text-5xl { font-size: 2.4rem !important; }
+        .results-page .text-3xl { font-size: 1.6rem !important; }
+        .results-page .p-8 { padding: 20px !important; }
+        .results-page .p-6 { padding: 16px !important; }
+        .results-page .p-5 { padding: 14px !important; }
+        .results-page .grid-cols-2 { grid-template-columns: 1fr 1fr !important; }
+        .results-res-zakat { font-size: 2.2rem !important; }
+      }
     `}</style>
-    <div className="results-page" style={{ maxWidth: 720, margin: '0 auto', padding: '40px 24px 60px', display: 'flex', flexDirection: 'column', gap: 24 }}>
+    <div className="results-page" style={{ maxWidth: 720, margin: '0 auto', padding: '40px 20px 60px', display: 'flex', flexDirection: 'column', gap: 24, overflowX: 'hidden' }}>
 
         {/* History Tab */}
         {activeTab === 'history' && (
