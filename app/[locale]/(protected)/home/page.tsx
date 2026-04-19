@@ -27,6 +27,8 @@ export default function HomePage() {
   const [name, setName] = useState('')
   const [session, setSession] = useState<Session | null>(null)
   const [loading, setLoading] = useState(true)
+  const [zakatPlan, setZakatPlan] = useState<{ monthly_target: number; currency: string; annual_zakat: number; message: string } | null>(null)
+  const [planProgress, setPlanProgress] = useState(0)
 
   useEffect(() => {
     async function load() {
@@ -39,7 +41,15 @@ export default function HomePage() {
         if (display_name) setName(display_name)
 
         const { session } = await sessionRes.json()
-        if (session?.status === 'complete') setSession(session)
+        if (session?.status === 'complete') {
+          setSession(session)
+          // Load plan if session has one
+          if (session.zakat_plan) {
+            setZakatPlan(session.zakat_plan)
+            const saved = localStorage.getItem(`plan_progress_${session.id}`)
+            if (saved) setPlanProgress(parseFloat(saved) || 0)
+          }
+        }
       } catch { /* ignore */ }
       finally { setLoading(false) }
     }
@@ -130,6 +140,32 @@ export default function HomePage() {
             <p style={{ fontFamily: "'Libre Caslon Text',serif", fontSize: 22, color: 'rgba(244,238,223,.4)', marginBottom: 8 }}>No calculation yet</p>
             <p style={{ fontSize: 13, color: 'rgba(244,238,223,.3)', marginBottom: 24 }}>Takes about 5 minutes. Know what you owe this year.</p>
             <a href={`/${locale}/flow?new=1`} className="dash-btn-primary" style={{ maxWidth: 220, margin: '0 auto' }}>Start now →</a>
+          </div>
+        )}
+
+        {/* Zakat Plan Widget */}
+        {zakatPlan && (
+          <div className="dash-fade-up dd3" style={{
+            marginBottom: 16, borderRadius: 18, padding: '20px 24px',
+            background: 'linear-gradient(135deg, rgba(16,185,129,.07), rgba(13,31,62,.6))',
+            border: '1px solid rgba(16,185,129,.2)',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+              <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: '#10B981' }}>Zakat Preparation</p>
+              <a href={`/${locale}/results`} style={{ fontSize: 12, color: 'rgba(16,185,129,.7)', textDecoration: 'none' }}>View plan →</a>
+            </div>
+            <p style={{ fontSize: 15, color: '#F4EEDF', fontWeight: 600, marginBottom: 10 }}>
+              This month&apos;s target: {zakatPlan.monthly_target.toLocaleString()} {zakatPlan.currency}
+            </p>
+            <div style={{ marginBottom: 8 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 5 }}>
+                <span style={{ fontSize: 11, color: 'rgba(244,238,223,.4)' }}>{planProgress.toLocaleString()} / {zakatPlan.annual_zakat.toLocaleString()} {zakatPlan.currency} set aside</span>
+                <span style={{ fontSize: 11, color: 'rgba(244,238,223,.4)' }}>{Math.round((planProgress / zakatPlan.annual_zakat) * 100)}%</span>
+              </div>
+              <div style={{ height: 6, background: 'rgba(255,255,255,.08)', borderRadius: 99, overflow: 'hidden' }}>
+                <div style={{ height: '100%', width: `${Math.min(100, (planProgress / zakatPlan.annual_zakat) * 100)}%`, background: 'linear-gradient(90deg, #10B981, #059669)', borderRadius: 99, transition: 'width .4s ease' }} />
+              </div>
+            </div>
           </div>
         )}
 

@@ -56,6 +56,11 @@ export default function ResultsPage() {
   const [currentSessionId, setCurrentSessionId] = useState<string | null>(null)
   const [zakatFitrOpen, setZakatFitrOpen] = useState(false)
   const [zakatFitrPeople, setZakatFitrPeople] = useState(1)
+  const [zakatPlan, setZakatPlan] = useState<{ monthly_target: number; currency: string; annual_zakat: number; message: string; generated_at: string } | null>(null)
+  const [planLoading, setPlanLoading] = useState(false)
+  const [planProgress, setPlanProgress] = useState(0)
+  const [editingProgress, setEditingProgress] = useState(false)
+  const [progressInput, setProgressInput] = useState('')
 
   const DISPLAY_CURRENCIES = [
     { code: 'USD', symbol: '$' }, { code: 'GBP', symbol: '£' }, { code: 'EUR', symbol: '€' },
@@ -157,6 +162,26 @@ export default function ResultsPage() {
       streamSummary(result)
     }
   }, [hawlConfirmed, result]) // streamSummary is stable; aiSummary omitted intentionally
+
+  useEffect(() => {
+    if (!currentSessionId || !result) return
+    const meetsNisab = result.nisab_met_silver || result.nisab_met_gold
+    if (!meetsNisab) return
+    // Load saved progress from localStorage
+    const saved = localStorage.getItem(`plan_progress_${currentSessionId}`)
+    if (saved) setPlanProgress(parseFloat(saved) || 0)
+    // Fetch plan (or generate if not yet saved)
+    setPlanLoading(true)
+    fetch('/api/zakat/plan', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sessionId: currentSessionId }),
+    })
+      .then(r => r.json())
+      .then(plan => { if (plan?.monthly_target) setZakatPlan(plan) })
+      .catch(() => {})
+      .finally(() => setPlanLoading(false))
+  }, [currentSessionId, result])
 
   async function streamSummary(r: ZakatResult) {
     setAiLoading(true)
@@ -749,6 +774,100 @@ This report is for personal reference only. Consult a qualified scholar for your
                 />
               )}
             </div>
+
+            {/* Zakat Plan Card */}
+            {meetsNisab && (planLoading || zakatPlan) && (
+              <div style={{ background: 'linear-gradient(135deg, rgba(16,185,129,.08), rgba(13,31,62,.7))', border: '1px solid rgba(16,185,129,.25)', borderRadius: 18, padding: 24 }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+                  <div>
+                    <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: '#10B981', marginBottom: 4 }}>Your Zakat Plan</p>
+                    <p style={{ fontSize: 16, fontWeight: 600, color: '#F4EEDF', margin: 0 }}>Stay prepared for next year</p>
+                  </div>
+                </div>
+
+                {planLoading && !zakatPlan ? (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    <div style={{ height: 12, background: 'rgba(255,255,255,.08)', borderRadius: 6, width: '60%', animation: 'pulse 1.5s infinite' }} />
+                    <div style={{ height: 12, background: 'rgba(255,255,255,.08)', borderRadius: 6, width: '80%', animation: 'pulse 1.5s infinite' }} />
+                  </div>
+                ) : zakatPlan && (
+                  <>
+                    {/* Monthly target */}
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 8 }}>
+                      <span style={{ fontSize: 36, fontWeight: 700, color: '#F4EEDF' }}>
+                        {zakatPlan.monthly_target.toLocaleString()} {zakatPlan.currency}
+                      </span>
+                      <span style={{ fontSize: 14, color: 'rgba(244,238,223,.5)' }}>/ month</span>
+                    </div>
+                    <p style={{ fontSize: 13, color: 'rgba(244,238,223,.6)', marginBottom: 20, fontStyle: 'italic' }}>
+                      &ldquo;{zakatPlan.message}&rdquo;
+                    </p>
+
+                    {/* Progress bar */}
+                    <div style={{ marginBottom: 16 }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+                        <span style={{ fontSize: 12, color: 'rgba(244,238,223,.5)' }}>Progress this year</span>
+                        <span style={{ fontSize: 12, color: '#F4EEDF', fontWeight: 600 }}>
+                          {planProgress.toLocaleString()} / {zakatPlan.annual_zakat.toLocaleString()} {zakatPlan.currency}
+                        </span>
+                      </div>
+                      <div style={{ height: 8, background: 'rgba(255,255,255,.08)', borderRadius: 99, overflow: 'hidden' }}>
+                        <div style={{
+                          height: '100%',
+                          width: `${Math.min(100, (planProgress / zakatPlan.annual_zakat) * 100)}%`,
+                          background: 'linear-gradient(90deg, #10B981, #059669)',
+                          borderRadius: 99,
+                          transition: 'width .4s ease',
+                        }} />
+                      </div>
+                    </div>
+
+                    {/* Time remaining */}
+                    {currentSessionId && (() => {
+                      const hawlEnd = new Date(new Date().getTime() + 354 * 24 * 60 * 60 * 1000)
+                      const monthsLeft = Math.max(0, Math.round((hawlEnd.getTime() - Date.now()) / (1000 * 60 * 60 * 24 * 30)))
+                      return (
+                        <p style={{ fontSize: 12, color: 'rgba(244,238,223,.35)', marginBottom: 16 }}>
+                          ~{monthsLeft} months until your next hawl
+                        </p>
+                      )
+                    })()}
+
+                    {/* Update progress */}
+                    {editingProgress ? (
+                      <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                        <input
+                          type="number"
+                          value={progressInput}
+                          onChange={e => setProgressInput(e.target.value)}
+                          placeholder={`Amount in ${zakatPlan.currency}`}
+                          style={{ flex: 1, background: 'rgba(255,255,255,.08)', border: '1px solid rgba(255,255,255,.15)', borderRadius: 10, padding: '8px 12px', fontSize: 13, color: '#F4EEDF', outline: 'none' }}
+                        />
+                        <button
+                          onClick={() => {
+                            const val = parseFloat(progressInput) || 0
+                            setPlanProgress(val)
+                            localStorage.setItem(`plan_progress_${currentSessionId}`, String(val))
+                            setEditingProgress(false)
+                          }}
+                          style={{ padding: '8px 16px', background: '#10B981', border: 'none', borderRadius: 10, fontSize: 13, fontWeight: 600, color: '#fff', cursor: 'pointer' }}
+                        >
+                          Save
+                        </button>
+                        <button onClick={() => setEditingProgress(false)} style={{ fontSize: 12, color: 'rgba(244,238,223,.3)', background: 'none', border: 'none', cursor: 'pointer' }}>✕</button>
+                      </div>
+                    ) : (
+                      <button
+                        onClick={() => { setProgressInput(String(planProgress)); setEditingProgress(true) }}
+                        style={{ fontSize: 13, color: '#10B981', background: 'none', border: '1px solid rgba(16,185,129,.3)', borderRadius: 10, padding: '8px 16px', cursor: 'pointer' }}
+                      >
+                        + Update progress
+                      </button>
+                    )}
+                  </>
+                )}
+              </div>
+            )}
 
             {/* AI Chat — primary action */}
             <ResultsAskHisaably

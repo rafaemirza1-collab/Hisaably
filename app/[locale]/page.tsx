@@ -411,18 +411,18 @@ export default function LandingPage() {
                   background: 'linear-gradient(180deg, rgba(212,175,106,.08), rgba(212,175,106,.03))',
                 }}>
                   <span style={{ width: 4, height: 4, background: 'var(--gold)', borderRadius: '50%', boxShadow: '0 0 8px var(--gold)' }} />
-                  AI Zakat assistant
+                  Year-round Zakat preparation
                 </span>
 
                 <h1 className="lp-serif" style={{
                   fontSize: 'clamp(44px, 5.6vw, 72px)', lineHeight: 1.04, letterSpacing: '-0.02em',
                   margin: '22px 0 24px', color: 'var(--cream)', fontWeight: 400,
                 }}>
-                  Know exactly <em style={{ fontStyle: 'italic', color: 'var(--gold-soft)' }}>what you owe</em>, and why.
+                  Never be <em style={{ fontStyle: 'italic', color: 'var(--gold-soft)' }}>unprepared</em> for Zakat again.
                 </h1>
 
                 <p style={{ fontSize: 19, lineHeight: 1.6, color: 'var(--cream-60)', maxWidth: 560, marginBottom: 36 }}>
-                  Hisaably is an AI Zakat assistant — not just a calculator. It walks you through every category, explains every ruling, and answers your follow-up questions in plain language.
+                  Hisaably helps you calculate, plan, and stay on track for Zakat — all year, not just once.
                 </p>
 
                 <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginBottom: 36 }}>
@@ -450,7 +450,7 @@ export default function LandingPage() {
                         color: '#04251B', fontWeight: 700, fontSize: 15, padding: '16px 24px',
                         borderRadius: 12, textDecoration: 'none', border: '1px solid #0E9E70',
                         boxShadow: '0 1px 0 rgba(255,255,255,.18) inset, 0 10px 24px -10px rgba(16,185,129,.5)',
-                      }}>Calculate my Zakat <IconArrow /></a>
+                      }}>Start my Zakat plan <IconArrow /></a>
                       <a href={signupHref} style={{
                         display: 'inline-flex', alignItems: 'center', gap: 10,
                         background: 'rgba(244,238,223,.04)', color: 'var(--cream)',
@@ -582,7 +582,7 @@ export default function LandingPage() {
             <div style={{ maxWidth: 680, marginBottom: 56 }}>
               <div style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: '.22em', color: 'var(--gold)', fontWeight: 600, marginBottom: 16 }}>How it works</div>
               <h2 className="lp-serif" style={{ fontSize: 'clamp(32px,3.6vw,48px)', lineHeight: 1.1, letterSpacing: '-0.015em', color: 'var(--cream)', margin: '0 0 18px', fontWeight: 400 }}>
-                Your assistant does the thinking. <em style={{ fontStyle: 'italic', color: 'var(--gold-soft)' }}>You make the decision.</em>
+                Calculate once. <em style={{ fontStyle: 'italic', color: 'var(--gold-soft)' }}>Stay prepared all year.</em>
               </h2>
               <p style={{ fontSize: 17, color: 'var(--cream-60)', lineHeight: 1.6, maxWidth: 600, margin: 0 }}>Hisaably isn&apos;t a form you fill in. It&apos;s a guided conversation — your personal Zakat assistant that explains every step and answers every question.</p>
             </div>
@@ -612,7 +612,7 @@ export default function LandingPage() {
             <div style={{ maxWidth: 680, marginBottom: 56 }}>
               <div style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: '.22em', color: 'var(--gold)', fontWeight: 600, marginBottom: 16 }}>Why Hisaably</div>
               <h2 className="lp-serif" style={{ fontSize: 'clamp(32px,3.6vw,48px)', lineHeight: 1.1, letterSpacing: '-0.015em', color: 'var(--cream)', margin: '0 0 18px', fontWeight: 400 }}>
-                Not a calculator. <em style={{ fontStyle: 'italic', color: 'var(--gold-soft)' }}>An assistant.</em>
+                Built for the way <em style={{ fontStyle: 'italic', color: 'var(--gold-soft)' }}>Zakat actually works.</em>
               </h2>
               <p style={{ fontSize: 17, color: 'var(--cream-60)', lineHeight: 1.6, margin: 0 }}>Calculators give you a form. Hisaably gives you a conversation — guiding you through every ruling, explaining every number, and helping you plan your giving with confidence.</p>
             </div>
@@ -765,7 +765,7 @@ export default function LandingPage() {
               </p>
               <div style={{ position: 'relative', display: 'flex', gap: 14, flexWrap: 'wrap' }}>
                 <a href={isLoggedIn ? dashboardHref : calculateHref} style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: 'linear-gradient(180deg,#10B981 0%,#0E9E70 100%)', color: '#04251B', fontWeight: 700, fontSize: 15, padding: '16px 24px', borderRadius: 12, textDecoration: 'none', border: '1px solid #0E9E70', boxShadow: '0 1px 0 rgba(255,255,255,.18) inset, 0 10px 24px -10px rgba(16,185,129,.5)' }}>
-                  {isLoggedIn ? 'Go to dashboard' : 'Calculate my Zakat'} <IconArrow />
+                  {isLoggedIn ? 'Go to dashboard' : 'Start my Zakat plan'} <IconArrow />
                 </a>
                 {!isLoggedIn && (
                   <a href={signupHref} style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: 'rgba(244,238,223,.04)', color: 'var(--cream)', padding: '16px 22px', borderRadius: 12, textDecoration: 'none', fontWeight: 600, fontSize: 15, border: '1px solid var(--line)' }}>Create account</a>
