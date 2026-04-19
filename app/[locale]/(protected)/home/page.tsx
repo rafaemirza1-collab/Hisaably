@@ -43,11 +43,9 @@ export default function HomePage() {
         const { session } = await sessionRes.json()
         if (session?.status === 'complete') {
           setSession(session)
-          // Load plan if session has one
           if (session.zakat_plan) {
             setZakatPlan(session.zakat_plan)
-            const saved = localStorage.getItem(`plan_progress_${session.id}`)
-            if (saved) setPlanProgress(parseFloat(saved) || 0)
+            if (session.plan_progress) setPlanProgress(parseFloat(session.plan_progress) || 0)
           }
         }
       } catch { /* ignore */ }

@@ -1,0 +1,1 @@
+ALTER TABLE zakat_sessions ADD COLUMN IF NOT EXISTS plan_progress NUMERIC DEFAULT 0;

@@ -106,6 +106,8 @@ export default function ResultsPage() {
             year: 'numeric', month: 'long', day: 'numeric'
           })
           setGeneratedAt(date)
+          // Load plan progress from DB (falls back to 0)
+          if (session.plan_progress) setPlanProgress(parseFloat(session.plan_progress) || 0)
           setLoading(false)
           return
         }
@@ -167,10 +169,7 @@ export default function ResultsPage() {
     if (!currentSessionId || !result) return
     const meetsNisab = result.nisab_met_silver || result.nisab_met_gold
     if (!meetsNisab) return
-    // Load saved progress from localStorage
-    const saved = localStorage.getItem(`plan_progress_${currentSessionId}`)
-    if (saved) setPlanProgress(parseFloat(saved) || 0)
-    // Fetch plan (or generate if not yet saved)
+    // Fetch plan (or generate if not yet saved) — plan_progress comes back from session API
     setPlanLoading(true)
     fetch('/api/zakat/plan', {
       method: 'POST',
@@ -844,11 +843,17 @@ This report is for personal reference only. Consult a qualified scholar for your
                           style={{ flex: 1, background: 'rgba(255,255,255,.08)', border: '1px solid rgba(255,255,255,.15)', borderRadius: 10, padding: '8px 12px', fontSize: 13, color: '#F4EEDF', outline: 'none' }}
                         />
                         <button
-                          onClick={() => {
+                          onClick={async () => {
                             const val = parseFloat(progressInput) || 0
                             setPlanProgress(val)
-                            localStorage.setItem(`plan_progress_${currentSessionId}`, String(val))
                             setEditingProgress(false)
+                            if (currentSessionId) {
+                              await fetch('/api/zakat/plan/progress', {
+                                method: 'PATCH',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ sessionId: currentSessionId, progress: val }),
+                              })
+                            }
                           }}
                           style={{ padding: '8px 16px', background: '#10B981', border: 'none', borderRadius: 10, fontSize: 13, fontWeight: 600, color: '#fff', cursor: 'pointer' }}
                         >
