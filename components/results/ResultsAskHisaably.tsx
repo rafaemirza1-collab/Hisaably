@@ -15,6 +15,8 @@ interface Props {
   currency?: string
   userName?: string
   madhab?: string
+  planProgress?: number
+  annualZakat?: number
 }
 
 function formatText(text: string) {
@@ -28,7 +30,7 @@ function fmtAmount(n: number, currency: string) {
   return `${n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${currency}`
 }
 
-export function ResultsAskHisaably({ zakatAmount, currency = 'USD', userName, madhab }: Props) {
+export function ResultsAskHisaably({ zakatAmount, currency = 'USD', userName, madhab, planProgress, annualZakat }: Props) {
   const t = useTranslations('ai')
   const locale = useLocale()
   const [messages, setMessages] = useState<Message[]>([])
@@ -51,8 +53,12 @@ export function ResultsAskHisaably({ zakatAmount, currency = 'USD', userName, ma
     `How does Zakat work if my wealth fluctuates throughout the year?`,
   ]
 
+  const progressNote = (planProgress != null && annualZakat && annualZakat > 0)
+    ? ` They have already set aside ${planProgress.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${currency} toward their Zakat, leaving ${Math.max(0, annualZakat - planProgress).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${currency} still to pay.`
+    : ''
+
   const zakatContext = zakatAmount && zakatAmount > 0
-    ? `The user${userName ? ` (${userName})` : ''} owes ${amtLabel} in Zakat this year, calculated using the silver nisab. Their display currency is ${currency}.`
+    ? `The user${userName ? ` (${userName})` : ''} owes ${amtLabel} in Zakat this year, calculated using the silver nisab. Their display currency is ${currency}.${progressNote}`
     : undefined
 
   useEffect(() => {

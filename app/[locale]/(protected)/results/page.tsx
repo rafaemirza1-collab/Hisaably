@@ -875,6 +875,8 @@ This report is for personal reference only. Consult a qualified scholar for your
               currency={displayCurrency}
               userName={userName || undefined}
               madhab={madhab || undefined}
+              planProgress={zakatPlan ? planProgress * fxRate : undefined}
+              annualZakat={zakatPlan ? zakatPlan.annual_zakat * fxRate : undefined}
             />
 
             {/* Zakat al-Fitr card */}
