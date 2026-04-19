@@ -122,7 +122,7 @@ export default function HomePage() {
             {sessionDate && <p style={{ color: 'rgba(244,238,223,.3)', fontSize: 12, marginBottom: 22 }}>{sessionDate}</p>}
             <div style={{ display: 'flex', gap: 12 }}>
               <a href={`/${locale}/results`} className="dash-btn-primary" style={{ flex: 1 }}>View result →</a>
-              <a href={`/${locale}/results`} className="dash-btn-ghost" style={{ flex: 1 }}>Ask Mizan →</a>
+              <a href={`/${locale}/results`} className="dash-btn-ghost" style={{ flex: 1 }}>Ask Hisaably →</a>
             </div>
           </div>
         ) : (

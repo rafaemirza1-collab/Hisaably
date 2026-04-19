@@ -9,7 +9,7 @@
     "nisab_gold": "Gold nisab today",
     "headline_1": "Know exactly what you owe —",
     "headline_gold": "and why",
-    "subheading": "Mizan walks you through your Zakat step by step. Every category explained. Every number justified. No doubt left behind.",
+    "subheading": "Hisaably walks you through your Zakat step by step. Every category explained. Every number justified. No doubt left behind.",
     "cta_calculate": "Calculate my Zakat →",
     "cta_signup": "Create account",
     "social_proof": "Built by Muslims, for Muslims · Used across 20+ countries",
@@ -20,7 +20,7 @@
     "step2_desc": "Live gold, silver and crypto prices. Your exact Zakat amount calculated using the nisab threshold.",
     "step3_title": "Understand why",
     "step3_desc": "Full breakdown, personalized AI summary, and unlimited questions. Leave with zero doubt.",
-    "what_mizan": "What Mizan does for you",
+    "what_hisaably": "What Hisaably does for you",
     "feature_1": "Explains every asset category in plain language",
     "feature_2": "Uses live market prices — no outdated estimates",
     "feature_3": "Calculates using silver and gold nisab",
@@ -157,7 +157,7 @@
     "next_2": "Consider local mosques, Islamic relief organizations, or individuals in your community.",
     "next_3": "You may pay Zakat in cash, or its equivalent value in goods or services.",
     "next_4": "Mark your Zakat date (hawl completion) for next year.",
-    "disclaimer": "This report is for personal reference only. Consult a qualified scholar for your specific situation. Mizan does not issue fatwas.",
+    "disclaimer": "This report is for personal reference only. Consult a qualified scholar for your specific situation. Hisaably does not issue fatwas.",
     "debt_note_title": "Note on your debts",
     "debt_note_desc": "You've entered a significant debt amount. Scholars differ on how much debt can be deducted. This calculation uses the short-term debt deduction approach. If you have long-term debts like a mortgage, consult a scholar for a ruling specific to your madhab.",
     "summary_loading": "Generating your personalized summary...",
@@ -165,13 +165,13 @@
     "ask_subtitle": "Have a question about your result? Ask anything."
   },
   "ai": {
-    "mizan_explains": "Mizan explains",
-    "ask_title": "Ask Mizan",
+    "hisaably_explains": "Hisaably explains",
+    "ask_title": "Ask Hisaably",
     "ask_placeholder": "e.g. Does Zakat apply to my pension?",
     "ask_button": "Ask",
     "loading": "...",
     "you": "You",
-    "mizan": "Mizan"
+    "hisaably": "Hisaably"
   },
   "common": {
     "loading": "Loading...",

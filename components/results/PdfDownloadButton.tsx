@@ -40,7 +40,7 @@ export function PdfDownloadButton({ result, generatedAt, userName, sessionLabel,
   return (
     <PDFDownloadLink
       document={<ZakatPDF result={result} generatedAt={generatedAt} userName={userName} sessionLabel={sessionLabel} aiSummary={aiSummary} />}
-      fileName={`mizan-zakat-${new Date().getFullYear()}${sessionLabel ? `-${sessionLabel.replace(/\s+/g, '-').toLowerCase()}` : ''}.pdf`}
+      fileName={`hisaably-zakat-${new Date().getFullYear()}${sessionLabel ? `-${sessionLabel.replace(/\s+/g, '-').toLowerCase()}` : ''}.pdf`}
       className="flex-1 py-3 border border-white/10 text-cream/60 rounded-xl text-sm hover:bg-white/5 transition-colors text-center"
     >
       {({ loading: pdfLoading }: { loading: boolean }) => pdfLoading ? 'Preparing...' : '↓ Download PDF'}

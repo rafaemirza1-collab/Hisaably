@@ -56,7 +56,7 @@ export default function SignupPage() {
 
       <div className="w-full max-w-sm relative">
         <div className="flex justify-center mb-10">
-          <Image src="/logo-full.png" alt="Mizan" width={180} height={54} />
+          <Image src="/logo-full.png" alt="Hisaably" width={180} height={54} />
         </div>
 
         <h1 className="text-2xl font-bold text-cream mb-2">{t('signup_title')}</h1>

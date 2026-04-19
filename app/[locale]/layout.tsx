@@ -17,7 +17,7 @@ const notoArabic = Noto_Sans_Arabic({
 const GOOGLE_FONTS_URL = "https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap"
 
 export const metadata: Metadata = {
-  title: 'Mizan — Zakat Assistant',
+  title: 'Hisaably — Zakat Assistant',
   description: 'A guided AI Zakat assistant that explains every step clearly.',
   icons: {
     icon: '/logo-icon.png',

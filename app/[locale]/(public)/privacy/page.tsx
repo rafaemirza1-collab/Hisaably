@@ -42,7 +42,7 @@ export default function PrivacyPage() {
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 64 }}>
               <a href={`/${locale}`} style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
                 <BrandMark size={24} />
-                <span className="pp-serif" style={{ fontSize: 17, color: 'var(--cream)' }}>Mizan</span>
+                <span className="pp-serif" style={{ fontSize: 17, color: 'var(--cream)' }}>Hisaably</span>
               </a>
               <a href={`/${locale}/about`} style={{ fontSize: 13, color: 'var(--cream-60)', textDecoration: 'none' }}>← Back to About</a>
             </div>
@@ -55,16 +55,16 @@ export default function PrivacyPage() {
           <p className="pp-p" style={{ color: 'rgba(244,238,223,.4)', marginBottom: 48 }}>Last updated: April 2026</p>
 
           <h2 className="pp-h2">What we collect</h2>
-          <p className="pp-p">When you create a Mizan account, we collect your email address and any display name you choose to provide. When you use the Zakat calculator, we store the financial information you enter — asset values, debt amounts, your selected currency and madhab — in order to save your results and history.</p>
+          <p className="pp-p">When you create a Hisaably account, we collect your email address and any display name you choose to provide. When you use the Zakat calculator, we store the financial information you enter — asset values, debt amounts, your selected currency and madhab — in order to save your results and history.</p>
           <p className="pp-p">We do not collect payment information directly. If you subscribe to a paid plan, payments are processed by Stripe, which has its own privacy policy.</p>
 
           <h2 className="pp-h2">How we use your data</h2>
           <ul className="pp-ul">
             <li>To calculate and save your Zakat results across sessions</li>
             <li>To provide your calculation history and PDF exports</li>
-            <li>To power the Ask Mizan AI assistant, which uses your result data to answer follow-up questions</li>
+            <li>To power the Ask Hisaably AI assistant, which uses your result data to answer follow-up questions</li>
             <li>To send you hawl reminders if you opt in</li>
-            <li>To improve the accuracy and quality of Mizan&apos;s calculations</li>
+            <li>To improve the accuracy and quality of Hisaably&apos;s calculations</li>
           </ul>
 
           <h2 className="pp-h2">What we never do</h2>
@@ -72,27 +72,27 @@ export default function PrivacyPage() {
             <li>We never sell your personal data to third parties</li>
             <li>We never use your financial data for advertising</li>
             <li>We never share your data with data brokers</li>
-            <li>We never use your information for any purpose beyond operating Mizan</li>
+            <li>We never use your information for any purpose beyond operating Hisaably</li>
           </ul>
 
           <h2 className="pp-h2">Data storage and security</h2>
           <p className="pp-p">Your data is stored securely using Supabase, a SOC 2 compliant infrastructure provider. Data is encrypted in transit (TLS) and at rest. We follow industry-standard security practices and access controls.</p>
 
           <h2 className="pp-h2">AI and your data</h2>
-          <p className="pp-p">The Ask Mizan feature uses AI to answer your Zakat questions. Your calculation data may be included in the context sent to the AI model to generate relevant answers. This data is not used to train AI models and is not retained by the AI provider beyond the scope of your query.</p>
+          <p className="pp-p">The Ask Hisaably feature uses AI to answer your Zakat questions. Your calculation data may be included in the context sent to the AI model to generate relevant answers. This data is not used to train AI models and is not retained by the AI provider beyond the scope of your query.</p>
 
           <h2 className="pp-h2">Your rights</h2>
           <p className="pp-p">You may request deletion of your account and all associated data at any time by contacting us at <a href="mailto:rafaemirza1@gmail.com" style={{ color: 'var(--gold)', textDecoration: 'none' }}>rafaemirza1@gmail.com</a>. We will process deletion requests within 30 days.</p>
 
           <h2 className="pp-h2">Cookies</h2>
-          <p className="pp-p">Mizan uses only essential cookies required for authentication and session management. We do not use tracking cookies or third-party advertising cookies.</p>
+          <p className="pp-p">Hisaably uses only essential cookies required for authentication and session management. We do not use tracking cookies or third-party advertising cookies.</p>
 
           <h2 className="pp-h2">Contact</h2>
           <p className="pp-p">If you have any questions about this privacy policy or how your data is handled, please contact us at <a href="mailto:rafaemirza1@gmail.com" style={{ color: 'var(--gold)', textDecoration: 'none' }}>rafaemirza1@gmail.com</a>.</p>
 
           <div style={{ marginTop: 64, paddingTop: 32, borderTop: '1px solid var(--line)', display: 'flex', gap: 24 }}>
             <a href={`/${locale}/terms`} style={{ fontSize: 14, color: 'var(--cream-60)', textDecoration: 'none' }}>Terms of use →</a>
-            <a href={`/${locale}/about`} style={{ fontSize: 14, color: 'var(--cream-60)', textDecoration: 'none' }}>About Mizan →</a>
+            <a href={`/${locale}/about`} style={{ fontSize: 14, color: 'var(--cream-60)', textDecoration: 'none' }}>About Hisaably →</a>
           </div>
         </div>
       </div>

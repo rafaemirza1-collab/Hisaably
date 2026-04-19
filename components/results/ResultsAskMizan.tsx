@@ -28,7 +28,7 @@ function fmtAmount(n: number, currency: string) {
   return `${n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${currency}`
 }
 
-export function ResultsAskMizan({ zakatAmount, currency = 'USD', userName, madhab }: Props) {
+export function ResultsAskHisaably({ zakatAmount, currency = 'USD', userName, madhab }: Props) {
   const t = useTranslations('ai')
   const locale = useLocale()
   const [messages, setMessages] = useState<Message[]>([])

@@ -56,7 +56,7 @@ export function StepLayout({
 
       {/* Nav */}
       <div className="flex items-center justify-between px-6 py-4 border-b border-white/5 animate-fade-in">
-        <Image src="/logo-icon.png" alt="Mizan" width={40} height={40} />
+        <Image src="/logo-icon.png" alt="Hisaably" width={40} height={40} />
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
           <span className="text-xs text-cream/30 font-medium tabular-nums">

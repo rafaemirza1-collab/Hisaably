@@ -37,7 +37,7 @@ export default function LoginPage() {
       <div className="fixed top-20 left-1/2 -translate-x-1/2 w-[400px] h-[300px] rounded-full bg-gold/5 blur-3xl pointer-events-none" />
       <div className="w-full max-w-sm relative">
         <div className="flex justify-center mb-10">
-          <Image src="/logo-full.png" alt="Mizan" width={180} height={54} />
+          <Image src="/logo-full.png" alt="Hisaably" width={180} height={54} />
         </div>
 
         <h1 className="text-2xl font-bold text-cream mb-2">Welcome back</h1>

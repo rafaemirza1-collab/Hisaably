@@ -195,7 +195,7 @@ function StageWhy() {
 }
 
 const STEPS = [
-  { t: 'Tell Mizan about your wealth', d: 'Your assistant guides you through each asset category — no guessing what to include.' },
+  { t: 'Tell Hisaably about your wealth', d: 'Your assistant guides you through each asset category — no guessing what to include.' },
   { t: 'Get your precise Zakat amount', d: 'Live nisab, debt deductions, madhab-aware rulings — shown transparently, line by line.' },
   { t: 'Ask anything, get real answers', d: 'Follow-up questions answered by AI with scholarly grounding — not generic help text.' },
 ]
@@ -262,11 +262,11 @@ export default function LandingPage() {
   const fmtN = (n: number) => '$' + Math.round(n).toLocaleString('en-US')
 
   const faqs = [
-    { q: "Is Mizan's calculation scholar-reviewed?", a: "Our methodology is built on classical fiqh across the four Sunni madhahib. Where schools disagree, Mizan shows you the positions and lets you choose." },
-    { q: 'Do you use gold or silver nisab?', a: "Both — and you choose. Many scholars prefer silver nisab as it's the lower threshold and benefits more recipients. Mizan defaults to silver but shows you both figures." },
+    { q: "Is Hisaably's calculation scholar-reviewed?", a: "Our methodology is built on classical fiqh across the four Sunni madhahib. Where schools disagree, Hisaably shows you the positions and lets you choose." },
+    { q: 'Do you use gold or silver nisab?', a: "Both — and you choose. Many scholars prefer silver nisab as it's the lower threshold and benefits more recipients. Hisaably defaults to silver but shows you both figures." },
     { q: 'Is my financial data safe?', a: "Yes. When you create an account, data is encrypted and never sold, never shared, never used for ads." },
-    { q: 'Does Mizan cost anything?', a: "Calculating is free. A small paid tier unlocks history, PDF exports, and unlimited Ask-Mizan questions — but the core calculator always stays free." },
-    { q: "What if I don't know all my numbers exactly?", a: "That's fine. Mizan lets you use rough estimates and flags where precision matters most. You can revise any category and recalculate instantly." },
+    { q: 'Does Hisaably cost anything?', a: "Calculating is free. A small paid tier unlocks history, PDF exports, and unlimited Ask-Hisaably questions — but the core calculator always stays free." },
+    { q: "What if I don't know all my numbers exactly?", a: "That's fine. Hisaably lets you use rough estimates and flags where precision matters most. You can revise any category and recalculate instantly." },
   ]
 
   const calculateHref = `/${locale}/flow`
@@ -354,10 +354,10 @@ export default function LandingPage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 40 }}>
                 <a href={isLoggedIn ? dashboardHref : `/${locale}`} style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', color: 'var(--cream)' }}>
                   <BrandMark size={28} />
-                  <span className="lp-serif" style={{ fontSize: 20 }}>Mizan</span>
+                  <span className="lp-serif" style={{ fontSize: 20 }}>Hisaably</span>
                 </a>
                 <nav style={{ display: 'flex', gap: 28 }}>
-                  {[['#how', 'How it works'], ['#why', 'Why Mizan'], ['#faq', 'FAQ'], [`/${locale}/about`, 'About']].map(([href, label]) => (
+                  {[['#how', 'How it works'], ['#why', 'Why Hisaably'], ['#faq', 'FAQ'], [`/${locale}/about`, 'About']].map(([href, label]) => (
                     <a key={href} href={href} style={{ color: 'var(--cream-60)', textDecoration: 'none', fontSize: 14, fontWeight: 500, transition: 'color .2s' }}
                       onMouseEnter={e => (e.currentTarget.style.color = 'var(--cream)')}
                       onMouseLeave={e => (e.currentTarget.style.color = 'var(--cream-60)')}
@@ -422,7 +422,7 @@ export default function LandingPage() {
                 </h1>
 
                 <p style={{ fontSize: 19, lineHeight: 1.6, color: 'var(--cream-60)', maxWidth: 560, marginBottom: 36 }}>
-                  Mizan is an AI Zakat assistant — not just a calculator. It walks you through every category, explains every ruling, and answers your follow-up questions in plain language.
+                  Hisaably is an AI Zakat assistant — not just a calculator. It walks you through every category, explains every ruling, and answers your follow-up questions in plain language.
                 </p>
 
                 <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginBottom: 36 }}>
@@ -536,7 +536,7 @@ export default function LandingPage() {
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 18px', borderBottom: '1px solid var(--line)', background: 'linear-gradient(180deg, rgba(212,175,106,.05), transparent)' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                         {[0,1,2].map(i => <span key={i} style={{ width: 9, height: 9, borderRadius: '50%', background: 'rgba(244,238,223,.14)', display: 'inline-block' }} />)}
-                        <span className="lp-mono" style={{ fontSize: 12, color: 'rgba(244,238,223,.42)', fontWeight: 500, marginLeft: 8 }}>mizan.app / calculate</span>
+                        <span className="lp-mono" style={{ fontSize: 12, color: 'rgba(244,238,223,.42)', fontWeight: 500, marginLeft: 8 }}>hisaably.app / calculate</span>
                       </div>
                       <div style={{ fontSize: 11, color: 'var(--emerald)', display: 'inline-flex', alignItems: 'center', gap: 6, fontWeight: 600, letterSpacing: '.02em' }}>
                         <span className="lp-pulse" style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--emerald)', boxShadow: '0 0 0 4px rgba(16,185,129,.2)', display: 'inline-block' }} />
@@ -584,12 +584,12 @@ export default function LandingPage() {
               <h2 className="lp-serif" style={{ fontSize: 'clamp(32px,3.6vw,48px)', lineHeight: 1.1, letterSpacing: '-0.015em', color: 'var(--cream)', margin: '0 0 18px', fontWeight: 400 }}>
                 Your assistant does the thinking. <em style={{ fontStyle: 'italic', color: 'var(--gold-soft)' }}>You make the decision.</em>
               </h2>
-              <p style={{ fontSize: 17, color: 'var(--cream-60)', lineHeight: 1.6, maxWidth: 600, margin: 0 }}>Mizan isn&apos;t a form you fill in. It&apos;s a guided conversation — your personal Zakat assistant that explains every step and answers every question.</p>
+              <p style={{ fontSize: 17, color: 'var(--cream-60)', lineHeight: 1.6, maxWidth: 600, margin: 0 }}>Hisaably isn&apos;t a form you fill in. It&apos;s a guided conversation — your personal Zakat assistant that explains every step and answers every question.</p>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 24 }}>
               {[
-                { Icon: IconWallet, t: 'Tell Mizan about your wealth', d: "Cash, gold, silver, crypto, investments — your assistant guides you through each category, explaining what counts and why.", meta: 'avg. 4 min 12 sec' },
-                { Icon: IconScale, t: 'Get a precise, sourced result', d: 'Live nisab thresholds, debt deductions, madhab-aware rulings — Mizan applies all of it and shows its working, line by line.', meta: 'calculated in real time' },
+                { Icon: IconWallet, t: 'Tell Hisaably about your wealth', d: "Cash, gold, silver, crypto, investments — your assistant guides you through each category, explaining what counts and why.", meta: 'avg. 4 min 12 sec' },
+                { Icon: IconScale, t: 'Get a precise, sourced result', d: 'Live nisab thresholds, debt deductions, madhab-aware rulings — Hisaably applies all of it and shows its working, line by line.', meta: 'calculated in real time' },
                 { Icon: IconSparkles, t: 'Ask anything, get answers', d: "\"Does my jewellery count?\" \"Can I deduct my mortgage?\" Your AI assistant answers follow-up questions with scholarly sources — not generic FAQs.", meta: 'powered by AI' },
               ].map(({ Icon, t: title, d, meta }, i) => (
                 <div key={i} className="lp-step-card">
@@ -610,23 +610,23 @@ export default function LandingPage() {
         <section id="why" style={{ paddingBottom: 112, position: 'relative', zIndex: 1 }}>
           <div className="lp-wrap">
             <div style={{ maxWidth: 680, marginBottom: 56 }}>
-              <div style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: '.22em', color: 'var(--gold)', fontWeight: 600, marginBottom: 16 }}>Why Mizan</div>
+              <div style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: '.22em', color: 'var(--gold)', fontWeight: 600, marginBottom: 16 }}>Why Hisaably</div>
               <h2 className="lp-serif" style={{ fontSize: 'clamp(32px,3.6vw,48px)', lineHeight: 1.1, letterSpacing: '-0.015em', color: 'var(--cream)', margin: '0 0 18px', fontWeight: 400 }}>
                 Not a calculator. <em style={{ fontStyle: 'italic', color: 'var(--gold-soft)' }}>An assistant.</em>
               </h2>
-              <p style={{ fontSize: 17, color: 'var(--cream-60)', lineHeight: 1.6, margin: 0 }}>Calculators give you a form. Mizan gives you a conversation — guiding you through every ruling, explaining every number, and helping you plan your giving with confidence.</p>
+              <p style={{ fontSize: 17, color: 'var(--cream-60)', lineHeight: 1.6, margin: 0 }}>Calculators give you a form. Hisaably gives you a conversation — guiding you through every ruling, explaining every number, and helping you plan your giving with confidence.</p>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gridAutoRows: 'minmax(200px,auto)', gap: 20 }}>
               <div className="lp-feat hero-feat" style={{ gridColumn: 'span 2' }}>
                 <span style={{ width: 40, height: 40, borderRadius: 10, display: 'grid', placeItems: 'center', background: 'rgba(212,175,106,.14)', border: '1px solid var(--line)', color: 'var(--gold)', marginBottom: 20 }}><IconSparkles /></span>
                 <h4 className="lp-serif" style={{ fontSize: 26, fontWeight: 400, color: 'var(--cream)', margin: '0 0 8px', letterSpacing: '-0.01em' }}>An AI that explains every ruling — in plain language</h4>
-                <p style={{ fontSize: 14.5, color: 'var(--cream-60)', lineHeight: 1.55, margin: 0 }}>Mizan doesn&apos;t just give you a number — it tells you why. Ask follow-up questions about any asset, any deduction, or any ruling. Your assistant answers with scholarly grounding across all four madhahib.</p>
+                <p style={{ fontSize: 14.5, color: 'var(--cream-60)', lineHeight: 1.55, margin: 0 }}>Hisaably doesn&apos;t just give you a number — it tells you why. Ask follow-up questions about any asset, any deduction, or any ruling. Your assistant answers with scholarly grounding across all four madhahib.</p>
                 <span style={{ display: 'inline-block', marginTop: 16, fontSize: 11, color: 'var(--gold)', letterSpacing: '.14em', textTransform: 'uppercase' }}>Hanafi · Shafi&apos;i · Maliki · Hanbali aware</span>
               </div>
               {[
                 { Icon: IconCoin, t: 'Live market-linked nisab', d: 'Gold and silver thresholds update from live spot prices. No stale numbers, no guesswork.' },
                 { Icon: IconScale, t: 'Helps you plan your giving', d: 'See what you owe broken down by category, track previous years, and decide when and how to distribute — all in one place.' },
-                { Icon: IconChat, t: 'Ask Mizan, anything', d: '"Does my retirement account count?" — your AI assistant answers real Zakat questions patiently, any time.' },
+                { Icon: IconChat, t: 'Ask Hisaably, anything', d: '"Does my retirement account count?" — your AI assistant answers real Zakat questions patiently, any time.' },
                 { Icon: IconCalendar, t: 'Hawl reminders', d: "We remind you when the lunar year comes around, so your next Zakat isn't an afterthought." },
               ].map(({ Icon, t: title, d }, i) => (
                 <div key={i} className="lp-feat">
@@ -649,7 +649,7 @@ export default function LandingPage() {
                   No black boxes. <em style={{ fontStyle: 'italic', color: 'var(--gold-soft)' }}>Every dirham accounted for.</em>
                 </h2>
                 <p style={{ fontSize: 17, color: 'var(--cream-60)', lineHeight: 1.6, marginBottom: 32 }}>
-                  This is what Mizan gives back to you — a complete, category-by-category breakdown with live nisab, the reasoning behind each number, and a PDF you can keep.
+                  This is what Hisaably gives back to you — a complete, category-by-category breakdown with live nisab, the reasoning behind each number, and a PDF you can keep.
                 </p>
                 <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 32px 0' }}>
                   {['Every asset type categorised and valued', 'Nisab thresholds checked against your totals', 'Debts subtracted with clear justification', 'Final 2.5% applied transparently', 'Printable PDF + shareable receipt'].map((item, i) => (
@@ -670,7 +670,7 @@ export default function LandingPage() {
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 18px', borderBottom: '1px solid var(--line)', background: 'linear-gradient(180deg,rgba(212,175,106,.05),transparent)' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                       {[0,1,2].map(i => <span key={i} style={{ width: 9, height: 9, borderRadius: '50%', background: 'rgba(244,238,223,.14)', display: 'inline-block' }} />)}
-                      <span className="lp-mono" style={{ fontSize: 12, color: 'rgba(244,238,223,.42)', marginLeft: 8 }}>mizan.app / your-zakat</span>
+                      <span className="lp-mono" style={{ fontSize: 12, color: 'rgba(244,238,223,.42)', marginLeft: 8 }}>hisaably.app / your-zakat</span>
                     </div>
                     <span style={{ fontSize: 11, color: 'var(--emerald)', display: 'inline-flex', alignItems: 'center', gap: 6, fontWeight: 600 }}>
                       <span className="lp-pulse" style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--emerald)', boxShadow: '0 0 0 4px rgba(16,185,129,.2)', display: 'inline-block' }} />LIVE
@@ -761,7 +761,7 @@ export default function LandingPage() {
                 Give, with <em style={{ fontStyle: 'italic', color: 'var(--gold-soft)' }}>certainty</em>.
               </h2>
               <p style={{ position: 'relative', fontSize: 17, color: 'var(--cream-60)', margin: '0 0 32px', maxWidth: 560, lineHeight: 1.6 }}>
-                Mizan is your personal Zakat assistant. In five minutes, you&apos;ll have a precise figure, a full explanation, and an AI ready to answer every question — so you give with confidence, not doubt.
+                Hisaably is your personal Zakat assistant. In five minutes, you&apos;ll have a precise figure, a full explanation, and an AI ready to answer every question — so you give with confidence, not doubt.
               </p>
               <div style={{ position: 'relative', display: 'flex', gap: 14, flexWrap: 'wrap' }}>
                 <a href={isLoggedIn ? dashboardHref : calculateHref} style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: 'linear-gradient(180deg,#10B981 0%,#0E9E70 100%)', color: '#04251B', fontWeight: 700, fontSize: 15, padding: '16px 24px', borderRadius: 12, textDecoration: 'none', border: '1px solid #0E9E70', boxShadow: '0 1px 0 rgba(255,255,255,.18) inset, 0 10px 24px -10px rgba(16,185,129,.5)' }}>
@@ -782,14 +782,14 @@ export default function LandingPage() {
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
                   <BrandMark size={28} />
-                  <span className="lp-serif" style={{ fontSize: 20 }}>Mizan</span>
+                  <span className="lp-serif" style={{ fontSize: 20 }}>Hisaably</span>
                 </div>
                 <p style={{ margin: 0, maxWidth: 320, color: 'var(--cream-60)', fontSize: 14, lineHeight: 1.6 }}>A calm, careful Zakat assistant — built by Muslims for Muslims. Trusted with your niyyah, your numbers, and your deen.</p>
               </div>
               {[
-                { h: 'Product', links: [['Start calculation', calculateHref], ['Ask Mizan AI', isLoggedIn ? `/${locale}/results` : signupHref], ['PDF reports', isLoggedIn ? `/${locale}/results` : signupHref], ['History', isLoggedIn ? `/${locale}/results?tab=history` : signupHref]] },
+                { h: 'Product', links: [['Start calculation', calculateHref], ['Ask Hisaably AI', isLoggedIn ? `/${locale}/results` : signupHref], ['PDF reports', isLoggedIn ? `/${locale}/results` : signupHref], ['History', isLoggedIn ? `/${locale}/results?tab=history` : signupHref]] },
                 { h: 'Learn', links: [['What is Zakat?', `/${locale}/about#zakat`], ['Nisab explained', `/${locale}/about#nisab`], ['The four madhahib', `/${locale}/about#madhahib`], ['FAQ', '#faq']] },
-                { h: 'Company', links: [['About Mizan', `/${locale}/about`], ['Privacy policy', `/${locale}/privacy`], ['Terms of use', `/${locale}/terms`], ['Contact us', 'mailto:rafaemirza1@gmail.com']] },
+                { h: 'Company', links: [['About Hisaably', `/${locale}/about`], ['Privacy policy', `/${locale}/privacy`], ['Terms of use', `/${locale}/terms`], ['Contact us', 'mailto:rafaemirza1@gmail.com']] },
               ].map(({ h, links }, i) => (
                 <div key={i}>
                   <h5 style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: '.18em', color: 'var(--gold)', fontWeight: 600, margin: '0 0 18px' }}>{h}</h5>
@@ -803,7 +803,7 @@ export default function LandingPage() {
               ))}
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 32, borderTop: '1px solid var(--line)', color: 'rgba(244,238,223,.42)', fontSize: 12.5, gap: 16, flexWrap: 'wrap' }}>
-              <span>© 2026 Mizan. Educational tool — not a fatwa. Consult a qualified scholar for rulings specific to your situation.</span>
+              <span>© 2026 Hisaably. Educational tool — not a fatwa. Consult a qualified scholar for rulings specific to your situation.</span>
               <span style={{ fontFamily: "'Amiri',serif", fontSize: 15, color: 'var(--gold-soft)' }}>بِسْمِ اللَّهِ</span>
             </div>
           </div>

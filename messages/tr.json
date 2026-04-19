@@ -9,7 +9,7 @@
     "nisab_gold": "Bugün altın nisabı",
     "headline_1": "Ne kadar ödemek zorunda olduğunuzu bilin —",
     "headline_gold": "ve neden",
-    "subheading": "Mizan sizi Zekat hesaplamasında adım adım yönlendirir. Her kategori açıklanmış, her rakam gerekçelendirilmiştir.",
+    "subheading": "Hisaably sizi Zekat hesaplamasında adım adım yönlendirir. Her kategori açıklanmış, her rakam gerekçelendirilmiştir.",
     "cta_calculate": "Zekatımı Hesapla →",
     "cta_signup": "Hesap oluştur",
     "social_proof": "Müslümanlar tarafından Müslümanlar için yapıldı · 20'den fazla ülkede kullanılıyor",
@@ -20,7 +20,7 @@
     "step2_desc": "Altın, gümüş ve kripto canlı fiyatları. Nisab eşiğine göre hesaplanan Zekat tutarınız.",
     "step3_title": "Nedenini anlayın",
     "step3_desc": "Tam döküm, kişiselleştirilmiş AI özeti ve sınırsız soru.",
-    "what_mizan": "Mizan sizin için ne yapar",
+    "what_hisaably": "Hisaably sizin için ne yapar",
     "feature_1": "Her varlık kategorisini sade bir dille açıklar",
     "feature_2": "Gerçek zamanlı piyasa fiyatlarını kullanır",
     "feature_3": "Gümüş ve altın nisabıyla hesaplar",
@@ -157,7 +157,7 @@
     "next_2": "Yerel camiler ve İslami yardım kuruluşlarını değerlendirin.",
     "next_3": "Zekatı nakit olarak veya eşdeğer mal/hizmet olarak ödeyebilirsiniz.",
     "next_4": "Gelecek yıl için Zekat tarihini not edin.",
-    "disclaimer": "Bu rapor yalnızca kişisel başvuru amaçlıdır. Durumunuz için nitelikli bir âlime danışın. Mizan fetva vermez.",
+    "disclaimer": "Bu rapor yalnızca kişisel başvuru amaçlıdır. Durumunuz için nitelikli bir âlime danışın. Hisaably fetva vermez.",
     "debt_note_title": "Borçlarınıza Dair Not",
     "debt_note_desc": "Önemli miktarda borç girdiniz. Âlimler ne kadarının düşüleceği konusunda ihtilaf etmektedir. Mezheple ilgili bir âlime danışın.",
     "summary_loading": "Kişisel özetiniz oluşturuluyor...",
@@ -165,13 +165,13 @@
     "ask_subtitle": "Sonucunuz hakkında sorunuz mu var? İstediğinizi sorun."
   },
   "ai": {
-    "mizan_explains": "Mizan açıklıyor",
-    "ask_title": "Mizan'a Sor",
+    "hisaably_explains": "Hisaably açıklıyor",
+    "ask_title": "Hisaably'a Sor",
     "ask_placeholder": "Örn: Emekliliğime Zekat uygulanır mı?",
     "ask_button": "Sor",
     "loading": "...",
     "you": "Siz",
-    "mizan": "Mizan"
+    "hisaably": "Hisaably"
   },
   "common": {
     "loading": "Yükleniyor...",

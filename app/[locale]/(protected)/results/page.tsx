@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl'
 import { useLocale } from 'next-intl'
 import { AppShell } from '@/components/AppShell'
 import { ResultsBreakdown } from '@/components/results/ResultsBreakdown'
-import { ResultsAskMizan } from '@/components/results/ResultsAskMizan'
+import { ResultsAskHisaably } from '@/components/results/ResultsAskHisaably'
 import { PdfDownloadButton } from '@/components/results/PdfDownloadButton'
 import type { ZakatResult } from '@/lib/zakat/types'
 
@@ -220,13 +220,13 @@ End with one brief Islamic blessing or encouragement (one sentence). Warm, human
     const ics = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
-      'PRODID:-//Mizan//Zakat Reminder//EN',
+      'PRODID:-//Hisaably//Zakat Reminder//EN',
       'BEGIN:VEVENT',
-      `UID:zakat-${now.getTime()}@mizan`,
+      `UID:zakat-${now.getTime()}@hisaably`,
       `DTSTAMP:${fmt8(now)}`,
       `DTSTART;VALUE=DATE:${reminderDate.toISOString().slice(0, 10).replace(/-/g, '')}`,
-      'SUMMARY:Zakat Due — Check Mizan',
-      'DESCRIPTION:Your annual Zakat reminder. Open Mizan to recalculate.',
+      'SUMMARY:Zakat Due — Check Hisaably',
+      'DESCRIPTION:Your annual Zakat reminder. Open Hisaably to recalculate.',
       'BEGIN:VALARM',
       'TRIGGER:-P7D',
       'ACTION:DISPLAY',
@@ -248,14 +248,14 @@ End with one brief Islamic blessing or encouragement (one sentence). Warm, human
   async function handleCopy() {
     if (!result) return
     const meetsNisab = result.nisab_met_silver || result.nisab_met_gold
-    const text = `Mizan Zakat Report — ${generatedAt}
+    const text = `Hisaably Zakat Report — ${generatedAt}
 ${meetsNisab ? `Zakat Due: $${fmt(result.zakat_amount_silver)} (Silver Nisab · 2.5%)` : 'Status: Zakat not due this year'}
 Zakatable Wealth: $${fmt(result.total_zakatable_wealth)}
 Silver Nisab: $${fmt(result.nisab_silver_usd)} | Gold Nisab: $${fmt(result.nisab_gold_usd)}
 
 ${aiSummary}
 
-This report is for personal reference only. Consult a qualified scholar for your situation. Mizan does not issue fatwas.`
+This report is for personal reference only. Consult a qualified scholar for your situation. Hisaably does not issue fatwas.`
     await navigator.clipboard.writeText(text)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
@@ -517,7 +517,7 @@ This report is for personal reference only. Consult a qualified scholar for your
         {/* Result Tab */}
         {activeTab === 'result' && <>
         <div>
-          <p className="text-gold text-xs font-semibold uppercase tracking-wide mb-1">Mizan Zakat Report</p>
+          <p className="text-gold text-xs font-semibold uppercase tracking-wide mb-1">Hisaably Zakat Report</p>
           <h1 className="text-3xl font-bold text-cream">
             {userName ? `${t('page_title')}, ${userName}` : t('page_title')}
           </h1>
@@ -729,7 +729,7 @@ This report is for personal reference only. Consult a qualified scholar for your
             </div>
 
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-              <p className="text-xs font-semibold text-gold uppercase tracking-wide mb-3">Mizan&apos;s Summary</p>
+              <p className="text-xs font-semibold text-gold uppercase tracking-wide mb-3">Hisaably&apos;s Summary</p>
               {aiLoading && !aiSummary ? (
                 <div className="space-y-2">
                   <div className="h-3 bg-white/10 rounded animate-pulse w-full" />
@@ -751,7 +751,7 @@ This report is for personal reference only. Consult a qualified scholar for your
             </div>
 
             {/* AI Chat — primary action */}
-            <ResultsAskMizan
+            <ResultsAskHisaably
               zakatAmount={result.zakat_amount_silver * fxRate}
               currency={displayCurrency}
               userName={userName || undefined}

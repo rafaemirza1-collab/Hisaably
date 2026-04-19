@@ -9,7 +9,7 @@
     "nisab_gold": "Bugungi oltin nisob",
     "headline_1": "Aynan qancha to'lashingiz kerakligini bilib oling —",
     "headline_gold": "va nima uchun",
-    "subheading": "Mizan sizni zakot hisoblashda qadam-baqadam yo'naltiradi. Har bir toifa tushuntirilgan. Har bir raqam asoslanган.",
+    "subheading": "Hisaably sizni zakot hisoblashda qadam-baqadam yo'naltiradi. Har bir toifa tushuntirilgan. Har bir raqam asoslanган.",
     "cta_calculate": "Zakotimni hisoblash →",
     "cta_signup": "Hisob yaratish",
     "social_proof": "Musulmonlar tomonidan, musulmonlar uchun yaratilgan · 20dan ortiq mamlakatda foydalaniladi",
@@ -20,7 +20,7 @@
     "step2_desc": "Oltin, kumush va kriptoning jonli narxlari. Nisob orqali aniq zakot miqdori.",
     "step3_title": "Nima uchunligini tushuning",
     "step3_desc": "To'liq tahlil, shaxsiylashtirilgan AI xulosasi va cheksiz savollar.",
-    "what_mizan": "Mizan siz uchun nima qiladi",
+    "what_hisaably": "Hisaably siz uchun nima qiladi",
     "feature_1": "Har bir aktiv toifasini oddiy tilda tushuntiradi",
     "feature_2": "Jonli bozor narxlaridan foydalanadi",
     "feature_3": "Kumush va oltin nisobi bilan hisoblaydi",
@@ -153,7 +153,7 @@
     "next_2": "Mahalliy masjidlar va islomiy yordam tashkilotlarini ko'rib chiqing.",
     "next_3": "Zakotni naqd pul yoki ekvivalent tovar/xizmat shaklida to'lashingiz mumkin.",
     "next_4": "Keyingi yil uchun zakot sanasini belgilang.",
-    "disclaimer": "Bu hisobot faqat shaxsiy ma'lumot uchun. O'zingizning aniq vaziyatingiz uchun malakali olim bilan maslahatlashing. Mizan fatvo bermaydi.",
+    "disclaimer": "Bu hisobot faqat shaxsiy ma'lumot uchun. O'zingizning aniq vaziyatingiz uchun malakali olim bilan maslahatlashing. Hisaably fatvo bermaydi.",
     "debt_note_title": "Qarzlaringiz haqida eslatma",
     "debt_note_desc": "Siz katta miqdordagi qarz kiritdingiz. Olimlar qancha qarz chegirib tashlash mumkinligi haqida ixtilof qiladilar. Mazhabingiz bo'yicha olim bilan maslahatlashing.",
     "summary_loading": "Shaxsiy xulosangiz tayyorlanmoqda...",
@@ -161,13 +161,13 @@
     "ask_subtitle": "Natijangiz haqida savolingiz bormi? Istalgan narsani so'rang."
   },
   "ai": {
-    "mizan_explains": "Mizan tushuntiradi",
-    "ask_title": "Mizandan so'rash",
+    "hisaably_explains": "Hisaably tushuntiradi",
+    "ask_title": "Hisaablydan so'rash",
     "ask_placeholder": "Mas: Zakot pensiyamga qo'llaniladimi?",
     "ask_button": "So'rash",
     "loading": "...",
     "you": "Siz",
-    "mizan": "Mizan"
+    "hisaably": "Hisaably"
   },
   "common": {
     "loading": "Yuklanmoqda...",

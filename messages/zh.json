@@ -9,7 +9,7 @@
     "nisab_gold": "今日金天课线",
     "headline_1": "精确了解您应缴纳的金额 —",
     "headline_gold": "以及原因",
-    "subheading": "Mizan 逐步引导您完成天课计算。每个类别都有解释，每个数字都有依据。",
+    "subheading": "Hisaably 逐步引导您完成天课计算。每个类别都有解释，每个数字都有依据。",
     "cta_calculate": "计算我的天课 →",
     "cta_signup": "创建账户",
     "social_proof": "由穆斯林创建，为穆斯林服务 · 在20多个国家使用",
@@ -20,7 +20,7 @@
     "step2_desc": "黄金、白银和加密货币的实时价格。使用天课线精确计算您的天课金额。",
     "step3_title": "理解原因",
     "step3_desc": "完整分项、个性化AI摘要和无限问答。",
-    "what_mizan": "Mizan 为您做什么",
+    "what_hisaably": "Hisaably 为您做什么",
     "feature_1": "用简单语言解释每个资产类别",
     "feature_2": "使用实时市场价格",
     "feature_3": "按银天课线和金天课线计算",
@@ -153,7 +153,7 @@
     "next_2": "考虑当地清真寺和伊斯兰救助组织。",
     "next_3": "您可以以现金或等值商品/服务形式支付天课。",
     "next_4": "为明年标记您的天课日期。",
-    "disclaimer": "本报告仅供个人参考。请就您的具体情况咨询合格学者。Mizan不发布法特瓦。",
+    "disclaimer": "本报告仅供个人参考。请就您的具体情况咨询合格学者。Hisaably不发布法特瓦。",
     "debt_note_title": "关于您债务的说明",
     "debt_note_desc": "您输入了大量债务。学者们对可扣除的债务金额存在分歧。请就您的学派咨询学者。",
     "summary_loading": "正在生成您的个性化摘要...",
@@ -161,13 +161,13 @@
     "ask_subtitle": "对您的结果有疑问？随时提问。"
   },
   "ai": {
-    "mizan_explains": "Mizan解释",
-    "ask_title": "询问Mizan",
+    "hisaably_explains": "Hisaably解释",
+    "ask_title": "询问Hisaably",
     "ask_placeholder": "例如：天课适用于我的养老金吗？",
     "ask_button": "提问",
     "loading": "...",
     "you": "您",
-    "mizan": "Mizan"
+    "hisaably": "Hisaably"
   },
   "common": {
     "loading": "加载中...",

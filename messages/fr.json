@@ -9,7 +9,7 @@
     "nisab_gold": "Nisab or aujourd'hui",
     "headline_1": "Sachez exactement ce que vous devez —",
     "headline_gold": "et pourquoi",
-    "subheading": "Mizan vous guide étape par étape dans le calcul de votre Zakat. Chaque catégorie expliquée. Chaque chiffre justifié.",
+    "subheading": "Hisaably vous guide étape par étape dans le calcul de votre Zakat. Chaque catégorie expliquée. Chaque chiffre justifié.",
     "cta_calculate": "Calculer ma Zakat →",
     "cta_signup": "Créer un compte",
     "social_proof": "Construit par des musulmans, pour des musulmans · Utilisé dans plus de 20 pays",
@@ -20,7 +20,7 @@
     "step2_desc": "Prix en direct de l'or, de l'argent et des cryptos. Votre Zakat calculée avec précision.",
     "step3_title": "Comprenez pourquoi",
     "step3_desc": "Décomposition complète, résumé IA personnalisé et questions illimitées.",
-    "what_mizan": "Ce que Mizan fait pour vous",
+    "what_hisaably": "Ce que Hisaably fait pour vous",
     "feature_1": "Explique chaque catégorie d'actifs en langage clair",
     "feature_2": "Utilise les prix du marché en temps réel",
     "feature_3": "Calcule avec le nisab argent et or",
@@ -157,7 +157,7 @@
     "next_2": "Considérez les mosquées locales, les organisations islamiques d'aide.",
     "next_3": "Vous pouvez payer la Zakat en espèces ou en valeur équivalente.",
     "next_4": "Notez votre date de Zakat pour l'année prochaine.",
-    "disclaimer": "Ce rapport est uniquement à titre personnel. Consultez un savant qualifié pour votre situation. Mizan n'émet pas de fatwas.",
+    "disclaimer": "Ce rapport est uniquement à titre personnel. Consultez un savant qualifié pour votre situation. Hisaably n'émet pas de fatwas.",
     "debt_note_title": "Note sur vos dettes",
     "debt_note_desc": "Vous avez enregistré un montant de dette important. Les savants diffèrent sur la déductibilité. Consultez un savant pour votre madhab.",
     "summary_loading": "Génération de votre résumé personnalisé...",
@@ -165,13 +165,13 @@
     "ask_subtitle": "Une question sur votre résultat ? Demandez n'importe quoi."
   },
   "ai": {
-    "mizan_explains": "Mizan explique",
-    "ask_title": "Demandez à Mizan",
+    "hisaably_explains": "Hisaably explique",
+    "ask_title": "Demandez à Hisaably",
     "ask_placeholder": "Ex : La Zakat s'applique-t-elle à ma pension ?",
     "ask_button": "Demander",
     "loading": "...",
     "you": "Vous",
-    "mizan": "Mizan"
+    "hisaably": "Hisaably"
   },
   "common": {
     "loading": "Chargement...",

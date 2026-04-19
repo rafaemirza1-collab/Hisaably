@@ -91,7 +91,7 @@ function AppShellInner({ children, locale, userName }: AppShellProps) {
       <div style={{ padding: '0 16px 20px', borderBottom: '1px solid rgba(212,175,106,.1)' }}>
         <a href={`/${locale}`} onClick={onNavClick} style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', marginBottom: 12 }}>
           <BrandMark size={28} />
-          <span style={{ fontFamily: "'Libre Caslon Text', Georgia, serif", fontSize: 18, color: '#F4EEDF' }}>Mizan</span>
+          <span style={{ fontFamily: "'Libre Caslon Text', Georgia, serif", fontSize: 18, color: '#F4EEDF' }}>Hisaably</span>
         </a>
         {userName && (
           <p style={{ fontSize: 12, color: 'rgba(244,238,223,.38)', paddingLeft: 2, letterSpacing: '.01em' }}>
@@ -153,7 +153,7 @@ function AppShellInner({ children, locale, userName }: AppShellProps) {
           onMouseEnter={e => { e.currentTarget.style.background = 'rgba(244,238,223,.05)'; e.currentTarget.style.color = '#F4EEDF' }}
           onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'rgba(244,238,223,.55)' }}
         >
-          <IcoInfo />About Mizan
+          <IcoInfo />About Hisaably
         </a>
 
         <div style={{ padding: '4px 12px' }}>
@@ -212,7 +212,7 @@ function AppShellInner({ children, locale, userName }: AppShellProps) {
       }}>
         <a href={`/${locale}`} style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none' }}>
           <BrandMark size={24} />
-          <span style={{ fontFamily: "'Libre Caslon Text', Georgia, serif", fontSize: 16, color: '#F4EEDF' }}>Mizan</span>
+          <span style={{ fontFamily: "'Libre Caslon Text', Georgia, serif", fontSize: 16, color: '#F4EEDF' }}>Hisaably</span>
         </a>
         <button
           onClick={() => setDrawerOpen(true)}

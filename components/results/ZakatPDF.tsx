@@ -84,7 +84,7 @@ export function ZakatPDF({ result, generatedAt, userName, sessionLabel, aiSummar
           </View>
           <View style={styles.metaBlock}>
             <Text style={styles.metaText}>{generatedAt}</Text>
-            <Text style={styles.metaText}>mizan.app</Text>
+            <Text style={styles.metaText}>hisaably.app</Text>
           </View>
         </View>
 
@@ -134,7 +134,7 @@ export function ZakatPDF({ result, generatedAt, userName, sessionLabel, aiSummar
         {/* AI summary */}
         {cleanSummary ? (
           <View style={styles.summaryBox}>
-            <Text style={styles.summaryLabel}>Mizan Summary</Text>
+            <Text style={styles.summaryLabel}>Hisaably Summary</Text>
             <Text style={styles.summaryText}>{cleanSummary}</Text>
           </View>
         ) : null}
@@ -142,7 +142,7 @@ export function ZakatPDF({ result, generatedAt, userName, sessionLabel, aiSummar
         {/* Footer */}
         <View style={styles.divider} />
         <Text style={styles.footer}>
-          This report is for personal reference only. Consult a qualified scholar for your specific situation. Mizan does not issue fatwas. All amounts in USD unless otherwise stated.
+          This report is for personal reference only. Consult a qualified scholar for your specific situation. Hisaably does not issue fatwas. All amounts in USD unless otherwise stated.
         </Text>
       </Page>
     </Document>

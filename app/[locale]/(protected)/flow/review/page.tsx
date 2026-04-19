@@ -58,7 +58,7 @@ export default function ReviewPage() {
       <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full bg-emerald/5 blur-3xl pointer-events-none" />
       <div className="fixed top-20 left-1/2 -translate-x-1/2 w-[400px] h-[300px] rounded-full bg-gold/5 blur-3xl pointer-events-none" />
       <nav className="flex items-center justify-between px-6 py-4 border-b border-white/5 relative">
-        <Image src="/logo-icon.png" alt="Mizan" width={48} height={48} />
+        <Image src="/logo-icon.png" alt="Hisaably" width={48} height={48} />
         <LanguageSwitcher />
       </nav>
 

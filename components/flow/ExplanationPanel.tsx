@@ -104,7 +104,7 @@ export function ExplanationPanel({
   return (
     <div className="bg-white/5 border border-white/10 rounded-xl p-5 animate-fade-up">
       <p className="text-xs font-semibold text-gold uppercase tracking-wide mb-3">
-        {t('mizan_explains')}
+        {t('hisaably_explains')}
       </p>
       {loading ? (
         <div className="space-y-2">

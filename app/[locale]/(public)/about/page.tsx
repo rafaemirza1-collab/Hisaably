@@ -115,7 +115,7 @@ export default function AboutPage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 36 }}>
                 <a href={`/${locale}`} style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', color: 'var(--cream)' }}>
                   <BrandMark size={26} />
-                  <span className="ab-serif" style={{ fontSize: 18 }}>Mizan</span>
+                  <span className="ab-serif" style={{ fontSize: 18 }}>Hisaably</span>
                 </a>
                 <nav style={{ display: 'flex', gap: 24 }}>
                   <a href={`/${locale}/about#mission`} className="ab-nav-link">Mission</a>
@@ -158,7 +158,7 @@ export default function AboutPage() {
           }} />
           <div className="ab-wrap" style={{ textAlign: 'center' }}>
             <div className="ab-fade-up ab-d1" style={{ marginBottom: 24 }}>
-              <span className="ab-pill">About Mizan</span>
+              <span className="ab-pill">About Hisaably</span>
             </div>
             <h1 className="ab-serif ab-fade-up ab-d2" style={{
               fontSize: 'clamp(40px, 5vw, 64px)', lineHeight: 1.06, letterSpacing: '-0.02em',
@@ -167,7 +167,7 @@ export default function AboutPage() {
               Your personal <em style={{ fontStyle: 'italic', color: 'var(--gold-soft)' }}>Zakat assistant</em> — not just a calculator
             </h1>
             <p className="ab-fade-up ab-d3" style={{ fontSize: 18, color: 'var(--cream-60)', maxWidth: 580, margin: '0 auto 20px', lineHeight: 1.65 }}>
-              Mizan is an AI-powered assistant built by Muslims who believe you deserve more than a number. It guides you through every ruling, explains every line, and answers your questions — grounded in classical Islamic scholarship.
+              Hisaably is an AI-powered assistant built by Muslims who believe you deserve more than a number. It guides you through every ruling, explains every line, and answers your questions — grounded in classical Islamic scholarship.
             </p>
             {/* Quranic quote */}
             <div className="ab-fade-up ab-d4" style={{ margin: '32px auto 0', maxWidth: 520, padding: '24px 28px', border: '1px solid var(--line-strong)', borderRadius: 18, background: 'linear-gradient(180deg, rgba(212,175,106,.06), rgba(13,31,62,.4))' }}>
@@ -198,14 +198,14 @@ export default function AboutPage() {
                     Zakat is one of the five pillars of Islam — an obligation that purifies wealth and supports those in need. Yet for many Muslims, calculating it correctly feels uncertain. Which assets count? What&apos;s the nisab today? Can I deduct my debts? What does my madhab say?
                   </p>
                   <p>
-                    We built Mizan because existing tools either oversimplify or overwhelm. A traditional calculator gives you a form to fill in. Mizan gives you a <em style={{ fontStyle:'italic', color:'var(--cream)' }}>guided conversation</em> — an AI assistant that thinks through your situation with you, explains every ruling, and helps you plan your giving with confidence.
+                    We built Hisaably because existing tools either oversimplify or overwhelm. A traditional calculator gives you a form to fill in. Hisaably gives you a <em style={{ fontStyle:'italic', color:'var(--cream)' }}>guided conversation</em> — an AI assistant that thinks through your situation with you, explains every ruling, and helps you plan your giving with confidence.
                   </p>
                 </div>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                 {[
-                  { icon: '✦', title: 'AI-powered, not just automated', desc: 'Mizan uses AI to guide you through every category, answer your follow-up questions, and explain rulings — the way a knowledgeable friend would.' },
-                  { icon: '📖', title: 'Grounded in fiqh', desc: 'Built on classical scholarship across all four Sunni madhahib. Where schools disagree, Mizan shows you both positions and lets you choose.' },
+                  { icon: '✦', title: 'AI-powered, not just automated', desc: 'Hisaably uses AI to guide you through every category, answer your follow-up questions, and explain rulings — the way a knowledgeable friend would.' },
+                  { icon: '📖', title: 'Grounded in fiqh', desc: 'Built on classical scholarship across all four Sunni madhahib. Where schools disagree, Hisaably shows you both positions and lets you choose.' },
                   { icon: '⚖', title: 'Transparent to the dirham', desc: 'Every calculation shows its working. You see every included asset, every deduction, and exactly why the 2.5% rule applies — or doesn\'t.' },
                 ].map(({ icon, title, desc }) => (
                   <div key={title} className="ab-card" style={{ display: 'flex', gap: 18, padding: '22px 24px' }}>
@@ -229,13 +229,13 @@ export default function AboutPage() {
             <div style={{ textAlign: 'center', marginBottom: 56 }}>
               <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 14 }}>The process</p>
               <h2 className="ab-serif" style={{ fontSize: 'clamp(28px, 3.5vw, 40px)', color: 'var(--cream)', fontWeight: 400, letterSpacing: '-.01em' }}>
-                How Mizan guides you through Zakat
+                How Hisaably guides you through Zakat
               </h2>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
               {[
                 { n: '01', title: 'A guided conversation, not a form', body: 'Your AI assistant walks you through each asset category — explaining what counts, how it\'s valued, and what your madhab says. No guessing, no Googling rulings mid-way.' },
-                { n: '02', title: 'Live nisab + transparent calculation', body: 'Mizan checks live gold and silver prices daily, applies the 2.5% rule, deducts eligible debts, and shows you every step — including why any asset is included or excluded.' },
+                { n: '02', title: 'Live nisab + transparent calculation', body: 'Hisaably checks live gold and silver prices daily, applies the 2.5% rule, deducts eligible debts, and shows you every step — including why any asset is included or excluded.' },
                 { n: '03', title: 'Plan your giving with confidence', body: 'See a full breakdown, track previous years, download a PDF, and ask your AI assistant any follow-up question — from distribution channels to edge cases in your situation.' },
               ].map(({ n, title, body }) => (
                 <div key={n} className="ab-card" style={{ padding: '32px 28px 36px', position: 'relative', overflow: 'hidden' }}>
@@ -256,12 +256,12 @@ export default function AboutPage() {
           <div className="ab-wrap">
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 64, alignItems: 'start' }}>
               <div>
-                <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 16 }}>What Mizan does</p>
+                <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 16 }}>What Hisaably does</p>
                 <h2 className="ab-serif" style={{ fontSize: 'clamp(28px, 3.5vw, 40px)', color: 'var(--cream)', fontWeight: 400, letterSpacing: '-.01em', marginBottom: 20, lineHeight: 1.2 }}>
                   An assistant that calculates,<br />explains, and <em style={{ fontStyle: 'italic', color: 'var(--gold-soft)' }}>plans</em>
                 </h2>
                 <p style={{ fontSize: 15, color: 'var(--cream-60)', lineHeight: 1.7, marginBottom: 36 }}>
-                  Mizan isn&apos;t just a form you fill in once. It&apos;s a full Zakat companion — calculating your obligation, explaining every ruling in plain language, and helping you plan and track your giving over time.
+                  Hisaably isn&apos;t just a form you fill in once. It&apos;s a full Zakat companion — calculating your obligation, explaining every ruling in plain language, and helping you plan and track your giving over time.
                 </p>
                 <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
                   <a href={isLoggedIn ? `/${locale}/home` : `/${locale}/flow`} className="ab-btn-primary">
@@ -310,7 +310,7 @@ export default function AboutPage() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: 20, color: 'var(--cream-60)', fontSize: 15.5, lineHeight: 1.75 }}>
                 <p>Zakat (زكاة) is one of the Five Pillars of Islam — an annual obligatory act of worship in which a Muslim gives a portion of their qualifying wealth to those in need. The word itself means both <em style={{ color: 'var(--cream)', fontStyle: 'italic' }}>purification</em> and <em style={{ color: 'var(--cream)', fontStyle: 'italic' }}>growth</em> — giving Zakat purifies the wealth you keep and purifies the soul of the one who gives.</p>
                 <p>It is mentioned alongside prayer (salah) over 80 times in the Quran, underscoring how central it is to a Muslim&apos;s relationship with Allah and with their community. The Quran describes eight categories of people who are entitled to receive Zakat: the poor, the needy, those in debt, travellers in need, those working to collect and distribute it, new Muslims, those working to free themselves from slavery, and those working in the cause of Allah (Surah At-Tawbah 9:60).</p>
-                <p>Zakat is not the same as voluntary charity (sadaqah). It is a precise obligation — calculated annually, based on specific asset categories, and subject to scholarly rulings. Getting it right matters. That is why Mizan exists.</p>
+                <p>Zakat is not the same as voluntary charity (sadaqah). It is a precise obligation — calculated annually, based on specific asset categories, and subject to scholarly rulings. Getting it right matters. That is why Hisaably exists.</p>
                 <div className="ab-card gold-card" style={{ marginTop: 8, padding: '24px 28px' }}>
                   <p style={{ fontFamily: 'serif', fontSize: 22, color: 'var(--gold-soft)', lineHeight: 1.6, marginBottom: 10, direction: 'rtl', textAlign: 'right' }}>وَأَقِيمُوا الصَّلَاةَ وَآتُوا الزَّكَاةَ</p>
                   <p style={{ fontSize: 13, color: 'var(--cream-60)', fontStyle: 'italic', marginBottom: 4 }}>&ldquo;Establish prayer and give Zakat&rdquo;</p>
@@ -349,8 +349,8 @@ export default function AboutPage() {
                 ))}
               </div>
               <div style={{ color: 'var(--cream-60)', fontSize: 15.5, lineHeight: 1.75 }}>
-                <p>The nisab value in your currency changes daily as gold and silver prices fluctuate. Mizan fetches live spot prices every day so the threshold used in your calculation is always accurate — never a stale estimate from months ago.</p>
-                <p style={{ marginTop: 16 }}>Zakat is also only due if your wealth has remained above the nisab for a full lunar year (hawl). If your wealth dips below nisab at any point during the year, the clock resets. Mizan tracks this and reminds you when your hawl anniversary approaches.</p>
+                <p>The nisab value in your currency changes daily as gold and silver prices fluctuate. Hisaably fetches live spot prices every day so the threshold used in your calculation is always accurate — never a stale estimate from months ago.</p>
+                <p style={{ marginTop: 16 }}>Zakat is also only due if your wealth has remained above the nisab for a full lunar year (hawl). If your wealth dips below nisab at any point during the year, the clock resets. Hisaably tracks this and reminds you when your hawl anniversary approaches.</p>
               </div>
             </div>
           </div>
@@ -366,7 +366,7 @@ export default function AboutPage() {
               <h2 className="ab-serif" style={{ fontSize: 'clamp(30px, 4vw, 44px)', lineHeight: 1.15, color: 'var(--cream)', fontWeight: 400, marginBottom: 16, letterSpacing: '-.015em' }}>
                 The four <em style={{ fontStyle: 'italic', color: 'var(--gold-soft)' }}>madhahib</em>
               </h2>
-              <p style={{ fontSize: 15.5, color: 'var(--cream-60)', lineHeight: 1.75, marginBottom: 32 }}>A madhab (مذهب) is a school of Islamic jurisprudence — a systematic methodology for deriving legal rulings from the Quran and Sunnah. All four Sunni madhahib are valid and authoritative. They agree on the fundamentals of Zakat but differ on specific details. Mizan adjusts its calculation based on your chosen madhab.</p>
+              <p style={{ fontSize: 15.5, color: 'var(--cream-60)', lineHeight: 1.75, marginBottom: 32 }}>A madhab (مذهب) is a school of Islamic jurisprudence — a systematic methodology for deriving legal rulings from the Quran and Sunnah. All four Sunni madhahib are valid and authoritative. They agree on the fundamentals of Zakat but differ on specific details. Hisaably adjusts its calculation based on your chosen madhab.</p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                 {[
                   { name: 'Hanafi', founder: 'Imam Abu Hanifa (699–767 CE)', regions: 'Turkey, South Asia, Central Asia, Egypt', zakat: 'Worn gold and silver jewellery is included in zakatable wealth. All debts — short-term and long-term — may be deducted before calculating Zakat. The nisab is calculated using silver.' },
@@ -386,7 +386,7 @@ export default function AboutPage() {
                   </div>
                 ))}
               </div>
-              <p style={{ fontSize: 14, color: 'rgba(244,238,223,.4)', lineHeight: 1.65, marginTop: 24, fontStyle: 'italic' }}>Not sure which madhab you follow? Mizan defaults to the most common scholarly opinion and clearly shows where different schools diverge, so you can make an informed choice.</p>
+              <p style={{ fontSize: 14, color: 'rgba(244,238,223,.4)', lineHeight: 1.65, marginTop: 24, fontStyle: 'italic' }}>Not sure which madhab you follow? Hisaably defaults to the most common scholarly opinion and clearly shows where different schools diverge, so you can make an informed choice.</p>
             </div>
           </div>
         </section>
@@ -408,7 +408,7 @@ export default function AboutPage() {
               Meet your Zakat assistant.<br /><em style={{ fontStyle: 'italic', color: 'var(--gold-soft)' }}>Give with confidence.</em>
             </h2>
             <p style={{ fontSize: 16, color: 'var(--cream-60)', maxWidth: 500, margin: '0 auto 40px', lineHeight: 1.65 }}>
-              In five minutes, Mizan will guide you through your full Zakat — explaining every ruling, answering every question, and helping you plan your giving.
+              In five minutes, Hisaably will guide you through your full Zakat — explaining every ruling, answering every question, and helping you plan your giving.
             </p>
             <div style={{ display: 'flex', justifyContent: 'center', gap: 14, flexWrap: 'wrap' }}>
               {isLoggedIn ? (
@@ -432,7 +432,7 @@ export default function AboutPage() {
           <div className="ab-wrap" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <BrandMark size={22} />
-              <span className="ab-serif" style={{ fontSize: 15, color: 'var(--cream)' }}>Mizan</span>
+              <span className="ab-serif" style={{ fontSize: 15, color: 'var(--cream)' }}>Hisaably</span>
             </div>
             <p style={{ fontSize: 12, color: 'rgba(244,238,223,.25)', textAlign: 'center' }}>Built by Muslims, for Muslims · Used across 20+ countries</p>
             <div style={{ display: 'flex', gap: 20 }}>

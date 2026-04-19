@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { ResultsBreakdown } from '@/components/results/ResultsBreakdown'
-import { ResultsAskMizan } from '@/components/results/ResultsAskMizan'
+import { ResultsAskHisaably } from '@/components/results/ResultsAskHisaably'
 import type { ZakatResult } from '@/lib/zakat/types'
 
 function fmt(n: number) {
@@ -119,14 +119,14 @@ End with one brief Islamic blessing or encouragement (one sentence). Warm, human
   async function handleCopy() {
     if (!result) return
     const meetsNisab = result.nisab_met_silver || result.nisab_met_gold
-    const text = `Mizan Zakat Report — ${generatedAt}
+    const text = `Hisaably Zakat Report — ${generatedAt}
 ${meetsNisab ? `Zakat Due: $${fmt(result.zakat_amount_silver)} (Silver Nisab · 2.5%)` : 'Status: Zakat not due this year'}
 Zakatable Wealth: $${fmt(result.total_zakatable_wealth)}
 Silver Nisab: $${fmt(result.nisab_silver_usd)} | Gold Nisab: $${fmt(result.nisab_gold_usd)}
 
 ${aiSummary}
 
-This report is for personal reference only. Consult a qualified scholar for your situation. Mizan does not issue fatwas.`
+This report is for personal reference only. Consult a qualified scholar for your situation. Hisaably does not issue fatwas.`
     await navigator.clipboard.writeText(text)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
@@ -171,7 +171,7 @@ This report is for personal reference only. Consult a qualified scholar for your
       <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full bg-emerald/5 blur-3xl pointer-events-none" />
       <div className="fixed top-20 left-1/2 -translate-x-1/2 w-[400px] h-[300px] rounded-full bg-gold/5 blur-3xl pointer-events-none" />
       <nav className="flex items-center justify-between px-6 py-4 border-b border-white/5">
-        <Image src="/logo-icon.png" alt="Mizan" width={48} height={48} />
+        <Image src="/logo-icon.png" alt="Hisaably" width={48} height={48} />
         <button
           onClick={() => router.push('/flow')}
           className="text-xs text-cream/40 hover:text-cream/70 transition-colors border border-white/10 rounded-lg px-3 py-1.5"
@@ -184,7 +184,7 @@ This report is for personal reference only. Consult a qualified scholar for your
 
         {/* Header */}
         <div>
-          <p className="text-gold text-xs font-semibold uppercase tracking-wide mb-1">Mizan Zakat Report</p>
+          <p className="text-gold text-xs font-semibold uppercase tracking-wide mb-1">Hisaably Zakat Report</p>
           <h1 className="text-3xl font-bold text-cream">Your Zakat Result</h1>
           <p className="text-cream/30 text-sm mt-1">{generatedAt}</p>
         </div>
@@ -343,7 +343,7 @@ This report is for personal reference only. Consult a qualified scholar for your
 
             {/* Personalized AI summary — only streams after hawl confirmed */}
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-              <p className="text-xs font-semibold text-gold uppercase tracking-wide mb-3">Mizan's Summary</p>
+              <p className="text-xs font-semibold text-gold uppercase tracking-wide mb-3">Hisaably's Summary</p>
               {aiLoading && !aiSummary ? (
                 <div className="space-y-2">
                   <div className="h-3 bg-white/10 rounded animate-pulse w-full" />
@@ -424,7 +424,7 @@ This report is for personal reference only. Consult a qualified scholar for your
             </div>
 
             {/* Unlimited Q&A */}
-            <ResultsAskMizan />
+            <ResultsAskHisaably />
 
             {/* Action buttons */}
             <div className="flex gap-3">
@@ -444,7 +444,7 @@ This report is for personal reference only. Consult a qualified scholar for your
 
             {/* Disclaimer */}
             <p className="text-xs text-cream/20 text-center leading-relaxed pb-8">
-              This report is for personal reference only. Consult a qualified scholar for your specific situation. Mizan does not issue fatwas.
+              This report is for personal reference only. Consult a qualified scholar for your specific situation. Hisaably does not issue fatwas.
             </p>
           </>
         )}
