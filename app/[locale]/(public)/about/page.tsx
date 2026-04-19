@@ -62,7 +62,7 @@ export default function AboutPage() {
         .ab-body { background: var(--navy-900); color: var(--cream); font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
         .ab-serif { font-family: 'Libre Caslon Text', Georgia, serif; }
         .ab-wrap { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
-        @media (max-width: 720px) { .ab-wrap { padding: 0 20px; } }
+        @media (max-width: 720px) { .ab-wrap { padding: 0 16px; } }
         .ab-nav-link { color: rgba(244,238,223,.62); text-decoration: none; font-size: 14px; font-weight: 500; transition: color .2s; }
         .ab-nav-link:hover { color: var(--cream); }
         .ab-pill { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .18em; color: var(--gold); padding: 8px 14px; border: 1px solid var(--line-strong); border-radius: 999px; background: linear-gradient(180deg, rgba(212,175,106,.08), rgba(212,175,106,.03)); }
@@ -83,6 +83,31 @@ export default function AboutPage() {
         .ab-d3 { animation-delay: 200ms; }
         .ab-d4 { animation-delay: 300ms; }
         .ab-d5 { animation-delay: 400ms; }
+        /* ── Mobile ── */
+        .ab-nav-links { display: flex; gap: 24px; }
+        .ab-nav-right { display: flex; align-items: center; gap: 12px; }
+        .ab-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+        .ab-2col-feat { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start; }
+        .ab-3col { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+        .ab-nisab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+        .ab-cta-row { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+        .ab-feat-cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+        @media (max-width: 768px) {
+          .ab-nav-links { display: none; }
+          .ab-nav-username { display: none; }
+          .ab-2col { grid-template-columns: 1fr; gap: 36px; }
+          .ab-2col-feat { grid-template-columns: 1fr; gap: 36px; }
+          .ab-3col { grid-template-columns: 1fr; gap: 16px; }
+          .ab-nisab-grid { grid-template-columns: 1fr; gap: 12px; }
+          .ab-cta-row { flex-direction: column; align-items: stretch; }
+          .ab-cta-row a { text-align: center; justify-content: center; }
+          .ab-feat-cta-row { flex-direction: column; }
+          .ab-feat-cta-row a { text-align: center; justify-content: center; }
+          .ab-btn-primary, .ab-btn-ghost { justify-content: center; }
+          .ab-section-pad { padding-top: 52px !important; padding-bottom: 52px !important; }
+          .ab-hero-pad { padding-top: 48px !important; padding-bottom: 60px !important; }
+          .ab-card { padding: 20px !important; }
+        }
       `}</style>
 
       {/* Font imports */}
@@ -117,7 +142,7 @@ export default function AboutPage() {
                   <BrandMark size={26} />
                   <span className="ab-serif" style={{ fontSize: 18 }}>Hisaably</span>
                 </a>
-                <nav style={{ display: 'flex', gap: 24 }}>
+                <nav className="ab-nav-links">
                   <a href={`/${locale}/about#mission`} className="ab-nav-link">Mission</a>
                   <a href={`/${locale}/about#how`} className="ab-nav-link">How it works</a>
                   <a href={`/${locale}/about#features`} className="ab-nav-link">Features</a>
@@ -129,7 +154,7 @@ export default function AboutPage() {
                 <LanguageSwitcher />
                 {isLoggedIn ? (
                   <>
-                    {userName && <span style={{ fontSize: 13, color: 'var(--cream-60)' }}>Hi, {userName}</span>}
+                    {userName && <span className="ab-nav-username" style={{ fontSize: 13, color: 'var(--cream-60)' }}>Hi, {userName}</span>}
                     <a href={`/${locale}/home`} style={{
                       background: 'linear-gradient(180deg,#10B981 0%,#0E9E70 100%)', color: '#04251B',
                       fontWeight: 700, fontSize: 13, padding: '9px 16px', borderRadius: 10,
@@ -148,7 +173,7 @@ export default function AboutPage() {
         </div>
 
         {/* ─── HERO ─── */}
-        <section style={{ position: 'relative', padding: '80px 0 96px', zIndex: 1 }}>
+        <section className="ab-hero-pad" style={{ position: 'relative', padding: '80px 0 96px', zIndex: 1 }}>
           <div style={{
             position: 'absolute', inset: 0, pointerEvents: 'none', opacity: .1,
             backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><g fill='none' stroke='%23D4AF6A' stroke-width='.6'><path d='M40 4 L52 18 L70 18 L58 32 L64 50 L40 40 L16 50 L22 32 L10 18 L28 18 Z'/><circle cx='40' cy='40' r='2'/></g></svg>")`,
@@ -185,9 +210,9 @@ export default function AboutPage() {
         <div className="ab-divider" />
 
         {/* ─── MISSION ─── */}
-        <section id="mission" style={{ padding: '80px 0', position: 'relative', zIndex: 1 }}>
+        <section id="mission" className="ab-section-pad" style={{ padding: '80px 0', position: 'relative', zIndex: 1 }}>
           <div className="ab-wrap">
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }}>
+            <div className="ab-2col">
               <div>
                 <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 16 }}>Why we built this</p>
                 <h2 className="ab-serif" style={{ fontSize: 'clamp(30px, 4vw, 44px)', lineHeight: 1.15, color: 'var(--cream)', fontWeight: 400, marginBottom: 24, letterSpacing: '-.015em' }}>
@@ -224,7 +249,7 @@ export default function AboutPage() {
         <div className="ab-divider" />
 
         {/* ─── HOW IT WORKS ─── */}
-        <section id="how" style={{ padding: '80px 0', position: 'relative', zIndex: 1 }}>
+        <section id="how" className="ab-section-pad" style={{ padding: '80px 0', position: 'relative', zIndex: 1 }}>
           <div className="ab-wrap">
             <div style={{ textAlign: 'center', marginBottom: 56 }}>
               <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 14 }}>The process</p>
@@ -232,7 +257,7 @@ export default function AboutPage() {
                 How Hisaably guides you through Zakat
               </h2>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+            <div className="ab-3col">
               {[
                 { n: '01', title: 'A guided conversation, not a form', body: 'Your AI assistant walks you through each asset category — explaining what counts, how it\'s valued, and what your madhab says. No guessing, no Googling rulings mid-way.' },
                 { n: '02', title: 'Live nisab + transparent calculation', body: 'Hisaably checks live gold and silver prices daily, applies the 2.5% rule, deducts eligible debts, and shows you every step — including why any asset is included or excluded.' },
@@ -252,9 +277,9 @@ export default function AboutPage() {
         <div className="ab-divider" />
 
         {/* ─── FEATURES ─── */}
-        <section id="features" style={{ padding: '80px 0', position: 'relative', zIndex: 1 }}>
+        <section id="features" className="ab-section-pad" style={{ padding: '80px 0', position: 'relative', zIndex: 1 }}>
           <div className="ab-wrap">
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 64, alignItems: 'start' }}>
+            <div className="ab-2col-feat">
               <div>
                 <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 16 }}>What Hisaably does</p>
                 <h2 className="ab-serif" style={{ fontSize: 'clamp(28px, 3.5vw, 40px)', color: 'var(--cream)', fontWeight: 400, letterSpacing: '-.01em', marginBottom: 20, lineHeight: 1.2 }}>
@@ -263,7 +288,7 @@ export default function AboutPage() {
                 <p style={{ fontSize: 15, color: 'var(--cream-60)', lineHeight: 1.7, marginBottom: 36 }}>
                   Hisaably isn&apos;t just a form you fill in once. It&apos;s a full Zakat companion — calculating your obligation, explaining every ruling in plain language, and helping you plan and track your giving over time.
                 </p>
-                <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+                <div className="ab-feat-cta-row">
                   <a href={isLoggedIn ? `/${locale}/home` : `/${locale}/flow`} className="ab-btn-primary">
                     {isLoggedIn ? 'Go to dashboard' : 'Calculate my Zakat'} →
                   </a>
@@ -335,7 +360,7 @@ export default function AboutPage() {
                 <p>The nisab is the minimum amount of wealth a Muslim must possess before Zakat becomes obligatory. It is based on the value of gold or silver as defined in classical Islamic scholarship — not an arbitrary number, but a divinely-guided threshold designed to ensure Zakat falls only on those with genuine surplus wealth.</p>
                 <p>There are two nisab thresholds:</p>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, margin: '24px 0' }}>
+              <div className="ab-nisab-grid">
                 {[
                   { metal: 'Silver nisab', amount: '612 grams of silver', detail: 'This is the lower threshold. The majority of scholars today recommend using the silver nisab because it is more inclusive — it means more Muslims fulfil the obligation and more people receive its benefit.', tag: 'Most scholars recommend' },
                   { metal: 'Gold nisab', amount: '85 grams of gold', detail: 'This is the higher threshold. Using gold nisab means fewer people reach the minimum, so fewer are obligated to pay. Some scholars prefer this to avoid obligating those with modest wealth.', tag: 'More restrictive' },
@@ -410,7 +435,7 @@ export default function AboutPage() {
             <p style={{ fontSize: 16, color: 'var(--cream-60)', maxWidth: 500, margin: '0 auto 40px', lineHeight: 1.65 }}>
               In five minutes, Hisaably will guide you through your full Zakat — explaining every ruling, answering every question, and helping you plan your giving.
             </p>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: 14, flexWrap: 'wrap' }}>
+            <div className="ab-cta-row">
               {isLoggedIn ? (
                 <>
                   <a href={`/${locale}/home`} className="ab-btn-primary" style={{ fontSize: 16, padding: '16px 32px' }}>Go to dashboard →</a>
