@@ -48,7 +48,12 @@ export default function ResultsPage() {
   const [generatedAt, setGeneratedAt] = useState(() => new Date().toLocaleDateString('en-US', {
     year: 'numeric', month: 'long', day: 'numeric'
   }))
-  const [displayCurrency, setDisplayCurrency] = useState('USD')
+  const [displayCurrency, setDisplayCurrency] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('hisaably_display_currency') || 'USD'
+    }
+    return 'USD'
+  })
   const [fxRate, setFxRate] = useState(1)
   const [sessionLabel, setSessionLabel] = useState('')
   const [editingLabel, setEditingLabel] = useState(false)
@@ -553,7 +558,7 @@ This report is for personal reference only. Consult a qualified scholar for your
           <span className="text-xs text-cream/40">Display in:</span>
           <select
             value={displayCurrency}
-            onChange={e => setDisplayCurrency(e.target.value)}
+            onChange={e => { setDisplayCurrency(e.target.value); localStorage.setItem('hisaably_display_currency', e.target.value) }}
             className="bg-white/5 border border-white/10 rounded-lg px-2 py-1 text-xs text-cream focus:outline-none focus:border-emerald transition-colors"
           >
             {DISPLAY_CURRENCIES.map(c => (
