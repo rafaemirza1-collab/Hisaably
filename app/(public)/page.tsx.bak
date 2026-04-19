@@ -1,0 +1,2 @@
+// This file intentionally left empty — root (/) is handled by app/page.tsx
+export {}
