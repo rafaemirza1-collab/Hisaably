@@ -300,6 +300,8 @@ export default function LandingPage() {
         .lp-how-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
         .lp-why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
         .lp-example-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; align-items: center; }
+        .lp-footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+        .lp-footer-links { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
         @media (max-width: 860px) {
           .lp-hero-grid { grid-template-columns: 1fr; gap: 48px; }
           .lp-hero-right { display: none; }
@@ -318,6 +320,9 @@ export default function LandingPage() {
           .lp-step-pill { padding: 14px 16px !important; }
           .lp-feat { padding: 20px !important; }
           .lp-step-card { padding: 24px 20px 28px !important; }
+          .lp-footer-grid { grid-template-columns: 1fr; gap: 32px; margin-bottom: 32px; }
+          .lp-footer-links { grid-template-columns: repeat(3,1fr); gap: 16px; grid-column: span 1 !important; }
+          main { overflow-x: hidden; }
         }
         .lp-step-pill {
           position: relative; display: flex; align-items: center; gap: 16px;
@@ -806,7 +811,7 @@ export default function LandingPage() {
         {/* ─── FOOTER ─── */}
         <footer style={{ padding: '56px 0 64px', borderTop: '1px solid var(--line)', position: 'relative', zIndex: 1 }}>
           <div className="lp-wrap">
-            <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 48, marginBottom: 48 }}>
+            <div className="lp-footer-grid">
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
                   <BrandMark size={28} />
@@ -814,6 +819,7 @@ export default function LandingPage() {
                 </div>
                 <p style={{ margin: 0, maxWidth: 320, color: 'var(--cream-60)', fontSize: 14, lineHeight: 1.6 }}>A calm, careful Zakat assistant — built by Muslims for Muslims. Trusted with your niyyah, your numbers, and your deen.</p>
               </div>
+              <div className="lp-footer-links" style={{ gridColumn: 'span 3' }}>
               {[
                 { h: 'Product', links: [['Start calculation', calculateHref], ['Ask Hisaably AI', isLoggedIn ? `/${locale}/results` : signupHref], ['PDF reports', isLoggedIn ? `/${locale}/results` : signupHref], ['History', isLoggedIn ? `/${locale}/results?tab=history` : signupHref]] },
                 { h: 'Learn', links: [['What is Zakat?', `/${locale}/about#zakat`], ['Nisab explained', `/${locale}/about#nisab`], ['The four madhahib', `/${locale}/about#madhahib`], ['FAQ', '#faq']] },
@@ -829,6 +835,7 @@ export default function LandingPage() {
                   ))}
                 </div>
               ))}
+              </div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 32, borderTop: '1px solid var(--line)', color: 'rgba(244,238,223,.42)', fontSize: 12.5, gap: 16, flexWrap: 'wrap' }}>
               <span>© 2026 Hisaably. Educational tool — not a fatwa. Consult a qualified scholar for rulings specific to your situation.</span>
