@@ -37,6 +37,7 @@ export function ResultsAskHisaably({ zakatAmount, currency = 'USD', userName, ma
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
+  const messagesContainerRef = useRef<HTMLDivElement>(null)
   const typewriterRefs = useRef<Map<number, ReturnType<typeof setTimeout>>>(new Map())
 
   const amtLabel = zakatAmount ? fmtAmount(zakatAmount, currency) : ''
@@ -62,7 +63,10 @@ export function ResultsAskHisaably({ zakatAmount, currency = 'USD', userName, ma
     : undefined
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
+    const container = messagesContainerRef.current
+    if (container) {
+      container.scrollTop = container.scrollHeight
+    }
   }, [messages])
 
   useEffect(() => {
@@ -187,7 +191,7 @@ export function ResultsAskHisaably({ zakatAmount, currency = 'USD', userName, ma
 
       {/* Messages */}
       {messages.length > 0 && (
-        <div className="px-5 py-4 space-y-4 overflow-y-auto" style={{ flex: 1, minHeight: 0, maxHeight: '360px' }}>
+        <div ref={messagesContainerRef} className="px-5 py-4 space-y-4 overflow-y-auto" style={{ flex: 1, minHeight: 0, maxHeight: '360px' }}>
           {messages.map((msg, i) => (
             <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
               <div className={`max-w-xs rounded-xl px-4 py-2.5 text-sm leading-relaxed ${
