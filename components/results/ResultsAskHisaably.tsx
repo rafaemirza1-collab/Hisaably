@@ -152,9 +152,9 @@ export function ResultsAskHisaably({ zakatAmount, currency = 'USD', userName, ma
   }
 
   return (
-    <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
+    <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden" style={{ display: 'flex', flexDirection: 'column' }}>
       {/* Header */}
-      <div className="px-5 py-4 border-b border-white/10">
+      <div className="px-5 py-4 border-b border-white/10" style={{ flexShrink: 0 }}>
         <p className="text-xs font-semibold text-gold uppercase tracking-wide mb-1">{t('ask_title')}</p>
         {zakatAmount && zakatAmount > 0 ? (
           <button
@@ -171,7 +171,7 @@ export function ResultsAskHisaably({ zakatAmount, currency = 'USD', userName, ma
 
       {/* Suggestion chips — only before first message */}
       {messages.length === 0 && (
-        <div className="px-5 pt-4 pb-2 flex flex-wrap gap-2">
+        <div className="px-5 pt-4 pb-2 flex flex-wrap gap-2" style={{ flexShrink: 0 }}>
           {SUGGESTIONS.map(s => (
             <button
               key={s}
@@ -187,7 +187,7 @@ export function ResultsAskHisaably({ zakatAmount, currency = 'USD', userName, ma
 
       {/* Messages */}
       {messages.length > 0 && (
-        <div className="px-5 py-4 space-y-4 max-h-80 overflow-y-auto">
+        <div className="px-5 py-4 space-y-4 overflow-y-auto" style={{ flex: 1, minHeight: 0, maxHeight: '360px' }}>
           {messages.map((msg, i) => (
             <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
               <div className={`max-w-xs rounded-xl px-4 py-2.5 text-sm leading-relaxed ${
