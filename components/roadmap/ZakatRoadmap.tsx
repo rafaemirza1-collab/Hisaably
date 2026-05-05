@@ -95,9 +95,14 @@ export function ZakatRoadmap({ sessionId, annualZakat, currency, initialSchedule
     <div style={{ background: 'linear-gradient(135deg, rgba(16,185,129,.06), rgba(13,31,62,.8))', border: '1px solid rgba(16,185,129,.2)', borderRadius: 20, padding: 24 }}>
 
       {/* Header */}
-      <div style={{ marginBottom: 16 }}>
-        <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: '#10B981', marginBottom: 4 }}>Zakat Roadmap</p>
-        <p style={{ fontSize: 16, fontWeight: 600, color: '#F4EEDF', margin: 0 }}>{year} · {annualZakat.toLocaleString()} {currency}</p>
+      <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+        <div>
+          <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: '#10B981', marginBottom: 4 }}>Zakat Roadmap</p>
+          <p style={{ fontSize: 16, fontWeight: 600, color: '#F4EEDF', margin: 0 }}>{year} · {annualZakat.toLocaleString()} {currency}</p>
+        </div>
+        <p style={{ fontSize: 12, color: 'rgba(244,238,223,.4)', marginTop: 2, whiteSpace: 'nowrap' }}>
+          {today.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+        </p>
       </div>
 
       {/* Missed months alert — shown at the top whenever there are missed months */}
