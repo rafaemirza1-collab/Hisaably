@@ -22,7 +22,6 @@ interface Props {
   currency?: string
   userName?: string
   madhab?: string
-  planProgress?: number
   annualZakat?: number
   journalEntries?: JournalEntry[]
   paymentSchedule?: string
@@ -99,7 +98,7 @@ function buildZakatContext(
   return `The user${userName ? ` (${userName})` : ''} owes ${zakatAmount.toLocaleString()} ${currency} in Zakat this year (annual total: ${annual.toLocaleString()} ${currency}). They have paid ${totalPaid.toLocaleString()} ${currency} so far, leaving ${remaining.toLocaleString()} ${currency} still to pay.${hawlLine}${scheduleLine}${historyLine}${missedLine}${reminderLine} When giving advice, be specific: calculate realistic payment amounts based on remaining balance and days left. Call out missed months by name. Be encouraging but honest.`
 }
 
-export function ResultsAskHisaably({ zakatAmount, currency = 'USD', userName, madhab, planProgress, annualZakat, journalEntries = [], paymentSchedule, sessionCreatedAt }: Props) {
+export function ResultsAskHisaably({ zakatAmount, currency = 'USD', userName, madhab, annualZakat, journalEntries = [], paymentSchedule, sessionCreatedAt }: Props) {
   const t = useTranslations('ai')
   const locale = useLocale()
   const [messages, setMessages] = useState<Message[]>([])

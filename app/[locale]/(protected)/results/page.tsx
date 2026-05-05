@@ -64,9 +64,7 @@ export default function ResultsPage() {
   const [zakatFitrPeople, setZakatFitrPeople] = useState(1)
   const [zakatPlan, setZakatPlan] = useState<{ monthly_target: number; currency: string; annual_zakat: number; message: string; generated_at: string } | null>(null)
   const [planLoading, setPlanLoading] = useState(false)
-  const [planProgress, setPlanProgress] = useState(0)
-  const [editingProgress, setEditingProgress] = useState(false)
-  const [progressInput, setProgressInput] = useState('')
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [journalEntries, setJournalEntries] = useState<any[]>([])
   const [paymentSchedule, setPaymentSchedule] = useState<'monthly' | 'biweekly' | 'lump'>('monthly')
   const [currentSessionCreatedAt, setCurrentSessionCreatedAt] = useState<string | undefined>(undefined)
@@ -116,7 +114,6 @@ export default function ResultsPage() {
           })
           setGeneratedAt(date)
           // Load plan progress from DB (falls back to 0)
-          if (session.plan_progress) setPlanProgress(parseFloat(session.plan_progress) || 0)
           setPaymentSchedule((session.payment_schedule as 'monthly' | 'biweekly' | 'lump') ?? 'monthly')
           setCurrentSessionCreatedAt(session.created_at)
           // Load journal entries
@@ -823,7 +820,6 @@ This report is for personal reference only. Consult a qualified scholar for your
               currency={displayCurrency}
               userName={userName || undefined}
               madhab={madhab || undefined}
-              planProgress={zakatPlan ? planProgress * fxRate : undefined}
               annualZakat={zakatPlan ? zakatPlan.annual_zakat * fxRate : undefined}
               journalEntries={journalEntries}
               paymentSchedule={paymentSchedule}

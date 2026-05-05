@@ -6,10 +6,12 @@ export async function GET(request: Request) {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const db = supabase as any
   const { searchParams } = new URL(request.url)
   const sessionId = searchParams.get('sessionId')
 
-  let query = supabase
+  let query = db
     .from('zakat_journal')
     .select('*')
     .eq('user_id', user.id)
@@ -26,6 +28,9 @@ export async function POST(request: Request) {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const db = supabase as any
+
   const body = await request.json() as {
     session_id?: string
     entry_date: string
@@ -34,7 +39,7 @@ export async function POST(request: Request) {
     type: 'payment' | 'reminder'
   }
 
-  const { data, error } = await supabase
+  const { data, error } = await db
     .from('zakat_journal')
     .insert({ ...body, user_id: user.id })
     .select()
@@ -43,15 +48,15 @@ export async function POST(request: Request) {
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
 
   if (body.type === 'payment' && body.session_id) {
-    const { data: payments } = await supabase
+    const { data: payments } = await db
       .from('zakat_journal')
       .select('amount')
       .eq('session_id', body.session_id)
       .eq('type', 'payment')
 
-    const total = (payments ?? []).reduce((sum, p) => sum + (p.amount ?? 0), 0)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await (supabase.from('zakat_sessions') as any)
+    const total = (payments ?? []).reduce((sum: number, p: { amount: number }) => sum + (p.amount ?? 0), 0)
+    await db
+      .from('zakat_sessions')
       .update({ plan_progress: total })
       .eq('id', body.session_id)
       .eq('user_id', user.id)

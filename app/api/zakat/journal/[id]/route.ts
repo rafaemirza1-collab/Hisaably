@@ -6,25 +6,28 @@ export async function DELETE(_: Request, { params }: { params: { id: string } })
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const { data: entry } = await supabase
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const db = supabase as any
+
+  const { data: entry } = await db
     .from('zakat_journal')
     .select('session_id, type')
     .eq('id', params.id)
     .eq('user_id', user.id)
     .single()
 
-  await supabase.from('zakat_journal').delete().eq('id', params.id).eq('user_id', user.id)
+  await db.from('zakat_journal').delete().eq('id', params.id).eq('user_id', user.id)
 
   if (entry?.type === 'payment' && entry?.session_id) {
-    const { data: payments } = await supabase
+    const { data: payments } = await db
       .from('zakat_journal')
       .select('amount')
       .eq('session_id', entry.session_id)
       .eq('type', 'payment')
 
-    const total = (payments ?? []).reduce((sum, p) => sum + (p.amount ?? 0), 0)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await (supabase.from('zakat_sessions') as any)
+    const total = (payments ?? []).reduce((sum: number, p: { amount: number }) => sum + (p.amount ?? 0), 0)
+    await db
+      .from('zakat_sessions')
       .update({ plan_progress: total })
       .eq('id', entry.session_id)
       .eq('user_id', user.id)
