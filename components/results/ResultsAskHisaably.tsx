@@ -10,6 +10,13 @@ interface Message {
   done: boolean
 }
 
+interface JournalEntry {
+  entry_date: string
+  amount: number
+  note: string | null
+  type: 'payment' | 'reminder'
+}
+
 interface Props {
   zakatAmount?: number
   currency?: string
@@ -17,6 +24,9 @@ interface Props {
   madhab?: string
   planProgress?: number
   annualZakat?: number
+  journalEntries?: JournalEntry[]
+  paymentSchedule?: string
+  sessionCreatedAt?: string
 }
 
 function formatText(text: string) {
@@ -30,7 +40,66 @@ function fmtAmount(n: number, currency: string) {
   return `${n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${currency}`
 }
 
-export function ResultsAskHisaably({ zakatAmount, currency = 'USD', userName, madhab, planProgress, annualZakat }: Props) {
+function buildZakatContext(
+  zakatAmount: number | undefined,
+  annualZakat: number | undefined,
+  currency: string,
+  userName: string | undefined,
+  journalEntries: JournalEntry[],
+  paymentSchedule: string | undefined,
+  sessionCreatedAt: string | undefined,
+): string | undefined {
+  if (!zakatAmount || zakatAmount <= 0) return undefined
+
+  const payments = journalEntries.filter(e => e.type === 'payment')
+  const reminders = journalEntries.filter(e => e.type === 'reminder')
+  const totalPaid = payments.reduce((s, e) => s + e.amount, 0)
+  const annual = annualZakat ?? zakatAmount
+  const remaining = Math.max(0, annual - totalPaid)
+
+  let hawlLine = ''
+  if (sessionCreatedAt) {
+    const hawlEnd = new Date(new Date(sessionCreatedAt).getTime() + 354 * 24 * 60 * 60 * 1000)
+    const daysLeft = Math.max(0, Math.round((hawlEnd.getTime() - Date.now()) / (1000 * 60 * 60 * 24)))
+    const monthsLeft = Math.round(daysLeft / 30)
+    hawlLine = ` Their hawl ends in approximately ${monthsLeft} months (${daysLeft} days), on ${hawlEnd.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}.`
+  }
+
+  let historyLine = ''
+  if (payments.length > 0) {
+    const paymentSummary = payments
+      .map(p => `${new Date(p.entry_date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}: ${p.amount.toLocaleString()} ${currency}${p.note ? ` (${p.note})` : ''}`)
+      .join('; ')
+    historyLine = ` Payment history: ${paymentSummary}.`
+  } else {
+    historyLine = ' They have not logged any payments yet.'
+  }
+
+  const currentMonth = new Date().getMonth()
+  const currentYear = new Date().getFullYear()
+  const paidMonths = new Set(payments.map(p => {
+    const d = new Date(p.entry_date)
+    return `${d.getFullYear()}-${d.getMonth()}`
+  }))
+  const missedMonths: string[] = []
+  for (let m = 0; m < currentMonth; m++) {
+    if (!paidMonths.has(`${currentYear}-${m}`)) {
+      missedMonths.push(new Date(currentYear, m, 1).toLocaleDateString('en-US', { month: 'long' }))
+    }
+  }
+  const missedLine = missedMonths.length > 0 ? ` They missed payments in: ${missedMonths.join(', ')}.` : ''
+
+  const scheduleLine = paymentSchedule ? ` Their chosen payment schedule is ${paymentSchedule}.` : ''
+
+  const upcomingReminders = reminders.filter(r => new Date(r.entry_date) >= new Date())
+  const reminderLine = upcomingReminders.length > 0
+    ? ` They have upcoming reminders: ${upcomingReminders.map(r => `${r.entry_date}${r.note ? `: ${r.note}` : ''}`).join(', ')}.`
+    : ''
+
+  return `The user${userName ? ` (${userName})` : ''} owes ${zakatAmount.toLocaleString()} ${currency} in Zakat this year (annual total: ${annual.toLocaleString()} ${currency}). They have paid ${totalPaid.toLocaleString()} ${currency} so far, leaving ${remaining.toLocaleString()} ${currency} still to pay.${hawlLine}${scheduleLine}${historyLine}${missedLine}${reminderLine} When giving advice, be specific: calculate realistic payment amounts based on remaining balance and days left. Call out missed months by name. Be encouraging but honest.`
+}
+
+export function ResultsAskHisaably({ zakatAmount, currency = 'USD', userName, madhab, planProgress, annualZakat, journalEntries = [], paymentSchedule, sessionCreatedAt }: Props) {
   const t = useTranslations('ai')
   const locale = useLocale()
   const [messages, setMessages] = useState<Message[]>([])
@@ -54,13 +123,7 @@ export function ResultsAskHisaably({ zakatAmount, currency = 'USD', userName, ma
     `How does Zakat work if my wealth fluctuates throughout the year?`,
   ]
 
-  const progressNote = (planProgress != null && annualZakat && annualZakat > 0)
-    ? ` They have already set aside ${planProgress.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${currency} toward their Zakat, leaving ${Math.max(0, annualZakat - planProgress).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${currency} still to pay.`
-    : ''
-
-  const zakatContext = zakatAmount && zakatAmount > 0
-    ? `The user${userName ? ` (${userName})` : ''} owes ${amtLabel} in Zakat this year, calculated using the silver nisab. Their display currency is ${currency}.${progressNote}`
-    : undefined
+  const zakatContext = buildZakatContext(zakatAmount, annualZakat, currency, userName, journalEntries, paymentSchedule, sessionCreatedAt)
 
   useEffect(() => {
     const container = messagesContainerRef.current

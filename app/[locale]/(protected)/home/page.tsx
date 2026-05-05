@@ -145,27 +145,18 @@ export default function HomePage() {
 
         {/* Zakat Plan Widget */}
         {zakatPlan && (
-          <div className="dash-fade-up dd3" style={{
-            marginBottom: 16, borderRadius: 18, padding: '20px 24px',
-            background: 'linear-gradient(135deg, rgba(16,185,129,.07), rgba(13,31,62,.6))',
-            border: '1px solid rgba(16,185,129,.2)',
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
-              <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: '#10B981' }}>Zakat Preparation</p>
-              <a href={`/${locale}/results`} style={{ fontSize: 12, color: 'rgba(16,185,129,.7)', textDecoration: 'none' }}>View plan →</a>
+          <div className="dash-fade-up dd3" style={{ marginBottom: 16, borderRadius: 18, padding: '20px 24px', background: 'rgba(16,185,129,.06)', border: '1px solid rgba(16,185,129,.15)' }}>
+            <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: '#10B981', marginBottom: 8 }}>Zakat Roadmap</p>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
+              <span style={{ fontSize: 13, color: 'rgba(244,238,223,.6)' }}>Paid this year</span>
+              <span style={{ fontSize: 13, fontWeight: 600, color: '#F4EEDF' }}>
+                {planProgress.toLocaleString()} / {zakatPlan.annual_zakat.toLocaleString()} {zakatPlan.currency}
+              </span>
             </div>
-            <p style={{ fontSize: 15, color: '#F4EEDF', fontWeight: 600, marginBottom: 10 }}>
-              This month&apos;s target: {zakatPlan.monthly_target.toLocaleString()} {zakatPlan.currency}
-            </p>
-            <div style={{ marginBottom: 8 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 5 }}>
-                <span style={{ fontSize: 11, color: 'rgba(244,238,223,.4)' }}>{planProgress.toLocaleString()} / {zakatPlan.annual_zakat.toLocaleString()} {zakatPlan.currency} set aside</span>
-                <span style={{ fontSize: 11, color: 'rgba(244,238,223,.4)' }}>{Math.round((planProgress / zakatPlan.annual_zakat) * 100)}%</span>
-              </div>
-              <div style={{ height: 6, background: 'rgba(255,255,255,.08)', borderRadius: 99, overflow: 'hidden' }}>
-                <div style={{ height: '100%', width: `${Math.min(100, (planProgress / zakatPlan.annual_zakat) * 100)}%`, background: 'linear-gradient(90deg, #10B981, #059669)', borderRadius: 99, transition: 'width .4s ease' }} />
-              </div>
+            <div style={{ height: 6, background: 'rgba(255,255,255,.08)', borderRadius: 99, overflow: 'hidden', marginBottom: 12 }}>
+              <div style={{ height: '100%', width: `${Math.min(100, (planProgress / zakatPlan.annual_zakat) * 100)}%`, background: '#10B981', borderRadius: 99 }} />
             </div>
+            <a href={`/${locale}/results`} style={{ fontSize: 13, color: '#10B981', textDecoration: 'none', fontWeight: 600 }}>Open my roadmap →</a>
           </div>
         )}
 
