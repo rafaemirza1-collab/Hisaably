@@ -111,7 +111,6 @@ export function RoadmapAI({ annualZakat, currency, entries, schedule, perPeriodT
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [open, setOpen] = useState(false)
-  const bottomRef = useRef<HTMLDivElement>(null)
   const messagesRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
