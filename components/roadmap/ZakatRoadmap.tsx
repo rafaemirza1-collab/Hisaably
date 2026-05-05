@@ -29,11 +29,18 @@ export function ZakatRoadmap({ sessionId, annualZakat, currency, initialSchedule
   const [selectedMonth, setSelectedMonth] = useState<number>(new Date().getMonth())
   const year = new Date().getFullYear()
 
+  // Catch-up math: remaining balance spread over months/periods left this year
+  const totalPaid = entries.filter(e => e.type === 'payment').reduce((s, e) => s + e.amount, 0)
+  const remaining = Math.max(0, annualZakat - totalPaid)
+  const currentMonth = new Date().getMonth() // 0-indexed
+  const monthsLeft = Math.max(1, 12 - currentMonth) // months from now to Dec inclusive
+  const biweeklyPeriodsLeft = Math.max(1, Math.round(monthsLeft * 26 / 12))
+
   const monthlyTarget = schedule === 'monthly'
-    ? Math.ceil(annualZakat / 12)
+    ? Math.ceil(remaining / monthsLeft)
     : schedule === 'biweekly'
-    ? Math.ceil(annualZakat / 26) * 2
-    : annualZakat
+    ? Math.ceil(remaining / biweeklyPeriodsLeft)
+    : remaining // lump sum = whatever's left
 
   const fetchEntries = useCallback(async () => {
     const res = await fetch(`/api/zakat/journal?sessionId=${sessionId}`)
@@ -54,12 +61,25 @@ export function ZakatRoadmap({ sessionId, annualZakat, currency, initialSchedule
       <div style={{ marginBottom: 20 }}>
         <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: '#10B981', marginBottom: 4 }}>Zakat Roadmap</p>
         <p style={{ fontSize: 16, fontWeight: 600, color: '#F4EEDF', margin: 0 }}>{year} · {annualZakat.toLocaleString()} {currency}</p>
+        {totalPaid > 0 && (
+          <p style={{ fontSize: 12, color: '#F59E0B', marginTop: 4 }}>
+            Catch-up target: {monthlyTarget.toLocaleString()} {currency}/{schedule === 'biweekly' ? 'bi-week' : 'month'} to finish by Dec
+          </p>
+        )}
       </div>
 
       {view === 'year' && (
         <div style={{ marginBottom: 20 }}>
           <p style={{ fontSize: 12, color: 'rgba(244,238,223,.4)', marginBottom: 8 }}>Payment schedule</p>
-          <SchedulePicker value={schedule} annualZakat={annualZakat} currency={currency} onChange={handleScheduleChange} />
+          <SchedulePicker
+            value={schedule}
+            annualZakat={annualZakat}
+            currency={currency}
+            onChange={handleScheduleChange}
+            catchUpMonthly={Math.ceil(remaining / monthsLeft)}
+            catchUpBiweekly={Math.ceil(remaining / biweeklyPeriodsLeft)}
+            catchUpLump={remaining}
+          />
         </div>
       )}
 

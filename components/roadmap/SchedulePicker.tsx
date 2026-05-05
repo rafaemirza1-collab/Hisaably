@@ -7,15 +7,22 @@ interface Props {
   annualZakat: number
   currency: string
   onChange: (s: Schedule) => void
+  catchUpMonthly?: number
+  catchUpBiweekly?: number
+  catchUpLump?: number
 }
 
-const OPTIONS = [
-  { value: 'monthly' as Schedule,  label: 'Monthly',   desc: (n: number, c: string) => `12 payments of ${Math.ceil(n / 12).toLocaleString()} ${c}` },
-  { value: 'biweekly' as Schedule, label: 'Bi-weekly', desc: (n: number, c: string) => `26 payments of ${Math.ceil(n / 26).toLocaleString()} ${c}` },
-  { value: 'lump' as Schedule,     label: 'Lump sum',  desc: (n: number, c: string) => `One payment of ${n.toLocaleString()} ${c}` },
-]
+export function SchedulePicker({ value, annualZakat, currency, onChange, catchUpMonthly, catchUpBiweekly, catchUpLump }: Props) {
+  const monthly = catchUpMonthly ?? Math.ceil(annualZakat / 12)
+  const biweekly = catchUpBiweekly ?? Math.ceil(annualZakat / 26)
+  const lump = catchUpLump ?? annualZakat
 
-export function SchedulePicker({ value, annualZakat, currency, onChange }: Props) {
+  const OPTIONS = [
+    { value: 'monthly' as Schedule,  label: 'Monthly',   amount: monthly,  suffix: '/month' },
+    { value: 'biweekly' as Schedule, label: 'Bi-weekly', amount: biweekly, suffix: '/bi-week' },
+    { value: 'lump' as Schedule,     label: 'Lump sum',  amount: lump,     suffix: ' total' },
+  ]
+
   return (
     <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
       {OPTIONS.map(o => (
@@ -27,7 +34,9 @@ export function SchedulePicker({ value, annualZakat, currency, onChange }: Props
           fontSize: 13, fontWeight: value === o.value ? 600 : 400, cursor: 'pointer', textAlign: 'left',
         }}>
           <div>{o.label}</div>
-          <div style={{ fontSize: 11, opacity: .7, marginTop: 2 }}>{o.desc(annualZakat, currency)}</div>
+          <div style={{ fontSize: 11, opacity: .85, marginTop: 2, color: value === o.value ? '#10B981' : '#F59E0B' }}>
+            {o.amount.toLocaleString()} {currency}{o.suffix}
+          </div>
         </button>
       ))}
     </div>
