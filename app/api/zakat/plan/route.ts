@@ -40,8 +40,8 @@ export async function POST(request: Request) {
     return Response.json({ error: 'Session not complete' }, { status: 400 })
   }
 
-  // Return existing plan if already generated
-  if (session.zakat_plan) {
+  // Return existing plan only if the amount hasn't changed
+  if (session.zakat_plan && session.zakat_plan.annual_zakat === session.zakat_amount) {
     return Response.json(session.zakat_plan)
   }
 
