@@ -18,15 +18,18 @@ export interface JournalEntry {
 
 interface Props {
   sessionId: string
-  annualZakat: number
-  currency: string
+  annualZakat: number       // already converted to display currency
+  currency: string          // display currency code
+  fxRate?: number           // multiplier from base (USD) to display currency
   initialSchedule?: Schedule
   initialEntries?: JournalEntry[]
+  displayCurrencies?: string[]
+  onCurrencyChange?: (c: string) => void
 }
 
 const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December']
 
-export function ZakatRoadmap({ sessionId, annualZakat, currency, initialSchedule = 'monthly' }: Props) {
+export function ZakatRoadmap({ sessionId, annualZakat, currency, fxRate = 1, initialSchedule = 'monthly', displayCurrencies = [], onCurrencyChange }: Props) {
   const [schedule, setSchedule] = useState<Schedule>(initialSchedule)
   const [entries, setEntries] = useState<JournalEntry[]>([])
   const [view, setView] = useState<'year' | 'month'>('year')
@@ -38,12 +41,14 @@ export function ZakatRoadmap({ sessionId, annualZakat, currency, initialSchedule
   const currentMonth = today.getMonth() // 0-indexed, e.g. April = 3
 
   // --- Core derived values (recalculate on every entry change) ---
-  const payments = entries.filter(e => e.type === 'payment')
+  // Entries are stored in base currency — convert to display currency for all math
+  const displayEntries = entries.map(e => ({ ...e, amount: e.amount * fxRate }))
+  const payments = displayEntries.filter(e => e.type === 'payment')
   const totalPaid = payments.reduce((s, e) => s + e.amount, 0)
   const remaining = Math.max(0, annualZakat - totalPaid)
 
-  // Which past months (before current month) had zero payments logged?
-  const paidMonthSet = new Set(payments.map(p => {
+  // Which past months (before current month) had zero payments logged? (use raw entries — amount doesn't matter for presence check)
+  const paidMonthSet = new Set(entries.filter(e => e.type === 'payment').map(p => {
     const d = new Date(p.entry_date)
     return d.getFullYear() === year ? d.getMonth() : -1
   }))
@@ -107,9 +112,18 @@ export function ZakatRoadmap({ sessionId, annualZakat, currency, initialSchedule
           <p style={{ fontSize: 20, fontWeight: 700, color: '#F4EEDF', margin: 0, whiteSpace: 'nowrap' }}>
             {today.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
           </p>
-          <p style={{ fontSize: 12, color: 'rgba(244,238,223,.4)', margin: 0 }}>
+          <p style={{ fontSize: 12, color: 'rgba(244,238,223,.4)', margin: '2px 0 6px' }}>
             {today.toLocaleDateString('en-US', { year: 'numeric', weekday: 'long' })}
           </p>
+          {displayCurrencies.length > 0 && onCurrencyChange && (
+            <select
+              value={currency}
+              onChange={e => onCurrencyChange(e.target.value)}
+              style={{ fontSize: 11, background: 'rgba(255,255,255,.06)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 8, padding: '3px 8px', color: '#F4EEDF', cursor: 'pointer', outline: 'none' }}
+            >
+              {displayCurrencies.map(c => <option key={c} value={c} style={{ background: '#0D1F3E' }}>{c}</option>)}
+            </select>
+          )}
         </div>
       </div>
 
@@ -159,7 +173,7 @@ export function ZakatRoadmap({ sessionId, annualZakat, currency, initialSchedule
       {view === 'year' ? (
         <RoadmapYearView
           year={year}
-          entries={entries}
+          entries={displayEntries}
           monthlyTarget={perPeriodTarget}
           annualZakat={annualZakat}
           currency={currency}
@@ -169,7 +183,7 @@ export function ZakatRoadmap({ sessionId, annualZakat, currency, initialSchedule
         <RoadmapMonthView
           year={year}
           month={selectedMonth}
-          entries={entries}
+          entries={displayEntries}
           sessionId={sessionId}
           currency={currency}
           monthlyTarget={perPeriodTarget}
@@ -184,10 +198,11 @@ export function ZakatRoadmap({ sessionId, annualZakat, currency, initialSchedule
           sessionId={sessionId}
           annualZakat={annualZakat}
           currency={currency}
-          entries={entries}
+          entries={displayEntries}
           schedule={schedule}
           perPeriodTarget={perPeriodTarget}
           missedMonths={missedMonths}
+          fxRate={fxRate}
         />
       )}
 

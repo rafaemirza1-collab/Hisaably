@@ -17,6 +17,7 @@ interface Props {
   schedule: string
   perPeriodTarget: number
   missedMonths: number[]
+  fxRate?: number
 }
 
 const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December']
@@ -34,6 +35,7 @@ function buildContext(
   schedule: string,
   perPeriodTarget: number,
   missedMonths: number[],
+  fxRate: number,
 ): string {
   const today = new Date()
   const year = today.getFullYear()
@@ -69,7 +71,12 @@ function buildContext(
     ? `Upcoming reminders: ${reminders.filter(r => new Date(r.entry_date) >= today).map(r => `${r.entry_date}${r.note ? ` (${r.note})` : ''}`).join(', ')}.`
     : ''
 
+  const currencyNote = fxRate !== 1
+    ? `NOTE: The user is viewing amounts in ${currency} (converted from USD at rate ${fxRate.toFixed(4)}). All amounts below are already in ${currency}. Do NOT suggest they have overpaid — the payment amounts are correct in ${currency} terms.`
+    : ''
+
   return `You are an intelligent Zakat payment assistant with FULL access to this user's roadmap data. Here is their exact situation as of ${today.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}:
+${currencyNote}
 
 ANNUAL ZAKAT OBLIGATION: ${annualZakat.toLocaleString()} ${currency}
 TOTAL PAID SO FAR: ${totalPaid.toLocaleString()} ${currency} (${pct}% complete)
@@ -99,7 +106,7 @@ const SUGGESTIONS = [
   'Give me a payment plan for the rest of the year',
 ]
 
-export function RoadmapAI({ annualZakat, currency, entries, schedule, perPeriodTarget, missedMonths }: Props) {
+export function RoadmapAI({ annualZakat, currency, entries, schedule, perPeriodTarget, missedMonths, fxRate = 1 }: Props) {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
@@ -118,7 +125,7 @@ export function RoadmapAI({ annualZakat, currency, entries, schedule, perPeriodT
     setLoading(true)
     setOpen(true)
 
-    const context = buildContext(annualZakat, currency, entries, schedule, perPeriodTarget, missedMonths)
+    const context = buildContext(annualZakat, currency, entries, schedule, perPeriodTarget, missedMonths, fxRate)
 
     setMessages(prev => [...prev, { role: 'user', text }])
 
@@ -155,7 +162,7 @@ export function RoadmapAI({ annualZakat, currency, entries, schedule, perPeriodT
       if (last?.role === 'assistant') updated[updated.length - 1] = { ...last, streaming: false }
       return updated
     })
-  }, [loading, annualZakat, currency, entries, schedule, perPeriodTarget, missedMonths])
+  }, [loading, annualZakat, currency, entries, schedule, perPeriodTarget, missedMonths, fxRate])
 
   return (
     <div style={{ marginTop: 20, background: 'rgba(139,92,246,.06)', border: '1px solid rgba(139,92,246,.2)', borderRadius: 16, overflow: 'hidden' }}>

@@ -809,8 +809,11 @@ This report is for personal reference only. Consult a qualified scholar for your
                 sessionId={currentSessionId}
                 annualZakat={result.zakat_amount_silver * fxRate}
                 currency={displayCurrency}
+                fxRate={fxRate}
                 initialSchedule={paymentSchedule}
                 initialEntries={journalEntries}
+                displayCurrencies={DISPLAY_CURRENCIES.map(c => c.code)}
+                onCurrencyChange={(c) => { setDisplayCurrency(c); localStorage.setItem('hisaably_display_currency', c) }}
               />
             )}
 
