@@ -1,4 +1,5 @@
 'use client'
+import { ISLAMIC_EVENTS_2026 } from './islamicDates'
 
 interface Entry { id: string; entry_date: string; amount: number; type: 'payment' | 'reminder' }
 interface Props {
@@ -59,6 +60,13 @@ export function RoadmapYearView({ year, entries, monthlyTarget, annualZakat, cur
             return d.getFullYear() === year && d.getMonth() === i && e.type === 'reminder'
           })
 
+          const islamicInMonth = ISLAMIC_EVENTS_2026.filter(ev => {
+            const d = new Date(ev.date)
+            return d.getFullYear() === year && d.getMonth() === i
+          })
+          const hasEid = islamicInMonth.some(ev => ev.name.includes('Eid'))
+          const hasIslamicEvent = islamicInMonth.length > 0
+
           const isCurrentMonth = currentYear === year && currentMonth === i
           const isPast = i < currentMonth && year <= currentYear
           const isMissed = isPast && !paidMonthSet.has(i)
@@ -77,7 +85,11 @@ export function RoadmapYearView({ year, entries, monthlyTarget, annualZakat, cur
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                 <span style={{ fontSize: 13, fontWeight: 600, color: isCurrentMonth ? '#10B981' : isMissed ? '#F59E0B' : '#F4EEDF' }}>{name}</span>
-                {hasReminder && <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#F59E0B', display: 'inline-block' }} />}
+                <div style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
+                  {hasEid && <span style={{ fontSize: 11 }}>🎉</span>}
+                  {hasIslamicEvent && !hasEid && <span style={{ fontSize: 11 }}>🌙</span>}
+                  {hasReminder && <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#F59E0B', display: 'inline-block' }} />}
+                </div>
               </div>
               <div style={{ height: 4, background: 'rgba(255,255,255,.08)', borderRadius: 99, overflow: 'hidden', marginBottom: 6 }}>
                 <div style={{ height: '100%', width: `${monthPct}%`, background: isMissed ? '#F59E0B' : '#10B981', borderRadius: 99 }} />
