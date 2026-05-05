@@ -105,9 +105,11 @@ export function RoadmapAI({ annualZakat, currency, entries, schedule, perPeriodT
   const [loading, setLoading] = useState(false)
   const [open, setOpen] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
+  const messagesRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
+    const container = messagesRef.current
+    if (container) container.scrollTop = container.scrollHeight
   }, [messages])
 
   const sendMessage = useCallback(async (text: string) => {
@@ -192,7 +194,7 @@ export function RoadmapAI({ annualZakat, currency, entries, schedule, perPeriodT
 
           {/* Messages */}
           {messages.length > 0 && (
-            <div style={{ padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 10, maxHeight: 320, overflowY: 'auto' }}>
+            <div ref={messagesRef} style={{ padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 10, maxHeight: 320, overflowY: 'auto' }}>
               {messages.map((msg, i) => (
                 <div key={i} style={{ display: 'flex', justifyContent: msg.role === 'user' ? 'flex-end' : 'flex-start' }}>
                   <div style={{
@@ -210,7 +212,6 @@ export function RoadmapAI({ annualZakat, currency, entries, schedule, perPeriodT
                   </div>
                 </div>
               ))}
-              <div ref={bottomRef} />
             </div>
           )}
 
