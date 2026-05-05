@@ -5,7 +5,7 @@ import { AddEntryModal } from './AddEntryModal'
 interface Entry { id: string; entry_date: string; amount: number; note: string | null; type: 'payment' | 'reminder' }
 interface Props {
   year: number; month: number; entries: Entry[]; sessionId: string; currency: string
-  monthlyTarget: number; onRefresh: () => void; onBack: () => void
+  monthlyTarget: number; onRefresh: () => Promise<void>; onBack: () => void
 }
 
 export function RoadmapMonthView({ year, month, entries, sessionId, currency, monthlyTarget, onRefresh, onBack }: Props) {

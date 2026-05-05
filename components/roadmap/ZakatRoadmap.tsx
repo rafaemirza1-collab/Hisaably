@@ -1,5 +1,5 @@
 'use client'
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback } from 'react'
 import { RoadmapYearView } from './RoadmapYearView'
 import { RoadmapMonthView } from './RoadmapMonthView'
 import { SchedulePicker } from './SchedulePicker'
@@ -66,11 +66,6 @@ export function ZakatRoadmap({ sessionId, annualZakat, currency, initialSchedule
     : schedule === 'biweekly'
     ? catchUpBiweekly
     : catchUpLump
-
-  // Sync entries when initialEntries change (e.g. after parent refetch)
-  useEffect(() => {
-    setEntries(initialEntries)
-  }, [initialEntries])
 
   const fetchEntries = useCallback(async () => {
     const res = await fetch(`/api/zakat/journal?sessionId=${sessionId}`)

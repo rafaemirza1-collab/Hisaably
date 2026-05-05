@@ -6,7 +6,7 @@ interface Props {
   sessionId: string
   currency: string
   onClose: () => void
-  onSaved: () => void
+  onSaved: () => Promise<void>
 }
 
 export function AddEntryModal({ date, sessionId, currency, onClose, onSaved }: Props) {
@@ -19,7 +19,7 @@ export function AddEntryModal({ date, sessionId, currency, onClose, onSaved }: P
 
   async function save() {
     setSaving(true)
-    await fetch('/api/zakat/journal', {
+    const res = await fetch('/api/zakat/journal', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -30,8 +30,12 @@ export function AddEntryModal({ date, sessionId, currency, onClose, onSaved }: P
         type,
       }),
     })
+    if (!res.ok) {
+      setSaving(false)
+      return
+    }
+    await onSaved()
     setSaving(false)
-    onSaved()
     onClose()
   }
 
