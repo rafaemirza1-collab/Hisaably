@@ -301,10 +301,10 @@ This report is for personal reference only. Consult a qualified scholar for your
 
   async function markAsOfficial(sessionId: string) {
     setMarkingOfficial(sessionId)
-    await fetch('/api/zakat/session/official', {
+    await fetch('/api/zakat/session', {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ sessionId }),
+      body: JSON.stringify({ action: 'official', sessionId }),
     })
     // Update local history state to reflect the change
     setHistory(prev => prev.map(h => ({ ...h, is_official: h.id === sessionId })))
@@ -651,10 +651,10 @@ This report is for personal reference only. Consult a qualified scholar for your
                       <button
                         onClick={async () => {
                           if (!currentSessionId) return
-                          await fetch('/api/zakat/session/label', {
+                          await fetch('/api/zakat/session', {
                             method: 'PATCH',
                             headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ sessionId: currentSessionId, label: labelInput.trim() }),
+                            body: JSON.stringify({ action: 'label', sessionId: currentSessionId, label: labelInput.trim() }),
                           })
                           setSessionLabel(labelInput.trim())
                           setEditingLabel(false)

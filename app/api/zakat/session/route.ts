@@ -104,3 +104,29 @@ export async function POST(request: Request) {
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
   return NextResponse.json({ session: data }, { status: 201 })
 }
+
+// PATCH /api/zakat/session — handles label and official actions
+export async function PATCH(request: Request) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const supabase = createClient() as any
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+
+  const body = await request.json() as { action: 'label' | 'official'; sessionId: string; label?: string }
+
+  if (body.action === 'label') {
+    const { data: session } = await supabase.from('zakat_sessions').select('answers').eq('id', body.sessionId).eq('user_id', user.id).single()
+    if (!session) return NextResponse.json({ error: 'Not found' }, { status: 404 })
+    await supabase.from('zakat_sessions').update({ answers: { ...session.answers, session_label: body.label } }).eq('id', body.sessionId)
+    return NextResponse.json({ ok: true })
+  }
+
+  if (body.action === 'official') {
+    await supabase.from('zakat_sessions').update({ is_official: false }).eq('user_id', user.id)
+    const { error } = await supabase.from('zakat_sessions').update({ is_official: true }).eq('id', body.sessionId).eq('user_id', user.id)
+    if (error) return NextResponse.json({ error: 'Failed' }, { status: 500 })
+    return NextResponse.json({ ok: true })
+  }
+
+  return NextResponse.json({ error: 'Unknown action' }, { status: 400 })
+}

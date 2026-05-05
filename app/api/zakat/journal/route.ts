@@ -64,3 +64,16 @@ export async function POST(request: Request) {
 
   return NextResponse.json(data)
 }
+
+// PATCH /api/zakat/journal?action=schedule — save payment schedule
+export async function PATCH(request: Request) {
+  const supabase = createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const db = supabase as any
+  const { sessionId, schedule } = await request.json() as { sessionId: string; schedule: string }
+  await db.from('zakat_sessions').update({ payment_schedule: schedule }).eq('id', sessionId).eq('user_id', user.id)
+  return NextResponse.json({ ok: true })
+}

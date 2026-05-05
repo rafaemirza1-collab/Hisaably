@@ -76,7 +76,7 @@ export function ZakatRoadmap({ sessionId, annualZakat, currency, initialSchedule
 
   async function handleScheduleChange(s: Schedule) {
     setSchedule(s)
-    await fetch('/api/zakat/schedule', {
+    await fetch('/api/zakat/journal', {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ sessionId, schedule: s }),
