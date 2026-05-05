@@ -30,11 +30,16 @@ export function AddEntryModal({ date, sessionId, currency, onClose, onSaved }: P
         type,
       }),
     })
+    const json = await res.json()
+    console.log('POST /api/zakat/journal response:', res.status, json)
     if (!res.ok) {
+      console.error('Save failed:', json)
       setSaving(false)
       return
     }
+    console.log('Calling onSaved / fetchEntries...')
     await onSaved()
+    console.log('onSaved done, closing modal')
     setSaving(false)
     onClose()
   }

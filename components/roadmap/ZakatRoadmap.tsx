@@ -69,7 +69,9 @@ export function ZakatRoadmap({ sessionId, annualZakat, currency, initialSchedule
 
   const fetchEntries = useCallback(async () => {
     const res = await fetch(`/api/zakat/journal?sessionId=${sessionId}`)
-    setEntries(await res.json())
+    const data = await res.json()
+    console.log('fetchEntries result:', data)
+    setEntries(data)
   }, [sessionId])
 
   async function handleScheduleChange(s: Schedule) {
