@@ -51,8 +51,10 @@ export function ZakatRoadmap({ sessionId, annualZakat, currency, initialSchedule
 
   // Remaining months from current month to December (inclusive)
   const monthsLeft = Math.max(1, 12 - currentMonth)
-  // Bi-weekly periods remaining (approx 2.17 per month)
-  const biweeklyPeriodsLeft = Math.max(1, Math.round(monthsLeft * 26 / 12))
+  // Bi-weekly periods: count actual days from today to Dec 31, divide by 14
+  const dec31 = new Date(year, 11, 31)
+  const daysLeft = Math.ceil((dec31.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
+  const biweeklyPeriodsLeft = Math.max(1, Math.floor(daysLeft / 14))
 
   // Per-period catch-up target based on remaining balance and time left
   const catchUpMonthly = Math.ceil(remaining / monthsLeft)
