@@ -1,5 +1,5 @@
 'use client'
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { RoadmapYearView } from './RoadmapYearView'
 import { RoadmapMonthView } from './RoadmapMonthView'
 import { SchedulePicker } from './SchedulePicker'
@@ -25,9 +25,9 @@ interface Props {
 
 const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December']
 
-export function ZakatRoadmap({ sessionId, annualZakat, currency, initialSchedule = 'monthly', initialEntries = [] }: Props) {
+export function ZakatRoadmap({ sessionId, annualZakat, currency, initialSchedule = 'monthly' }: Props) {
   const [schedule, setSchedule] = useState<Schedule>(initialSchedule)
-  const [entries, setEntries] = useState<JournalEntry[]>(initialEntries)
+  const [entries, setEntries] = useState<JournalEntry[]>([])
   const [view, setView] = useState<'year' | 'month'>('year')
   const [selectedMonth, setSelectedMonth] = useState<number>(new Date().getMonth())
   // backlog modal: log a payment for a missed month
@@ -68,11 +68,16 @@ export function ZakatRoadmap({ sessionId, annualZakat, currency, initialSchedule
     : catchUpLump
 
   const fetchEntries = useCallback(async () => {
-    const res = await fetch(`/api/zakat/journal?sessionId=${sessionId}`)
-    const data = await res.json()
-    console.log('fetchEntries result:', data)
-    setEntries(data)
+    try {
+      const res = await fetch(`/api/zakat/journal?sessionId=${sessionId}`)
+      if (!res.ok) return
+      const data = await res.json()
+      if (Array.isArray(data)) setEntries(data)
+    } catch { /* network error — keep existing entries */ }
   }, [sessionId])
+
+  // Always fetch from DB on mount — never trust parent-passed entries
+  useEffect(() => { fetchEntries() }, [fetchEntries])
 
   async function handleScheduleChange(s: Schedule) {
     setSchedule(s)
