@@ -4,6 +4,7 @@ import { RoadmapYearView } from './RoadmapYearView'
 import { RoadmapMonthView } from './RoadmapMonthView'
 import { SchedulePicker } from './SchedulePicker'
 import { AddEntryModal } from './AddEntryModal'
+import { RoadmapAI } from './RoadmapAI'
 
 type Schedule = 'monthly' | 'biweekly' | 'lump'
 
@@ -174,6 +175,19 @@ export function ZakatRoadmap({ sessionId, annualZakat, currency, initialSchedule
           monthlyTarget={perPeriodTarget}
           onRefresh={fetchEntries}
           onBack={() => setView('year')}
+        />
+      )}
+
+      {/* AI Roadmap Advisor — only on year view, has full live context */}
+      {view === 'year' && (
+        <RoadmapAI
+          sessionId={sessionId}
+          annualZakat={annualZakat}
+          currency={currency}
+          entries={entries}
+          schedule={schedule}
+          perPeriodTarget={perPeriodTarget}
+          missedMonths={missedMonths}
         />
       )}
 
