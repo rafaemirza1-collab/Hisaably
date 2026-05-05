@@ -30,8 +30,13 @@ export function RoadmapMonthView({ year, month, entries, sessionId, currency, mo
   const monthTotal = monthEntries.filter(e => e.type === 'payment').reduce((s, e) => s + e.amount, 0)
   const cells = [...Array(firstDay).fill(null), ...Array.from({ length: daysInMonth }, (_, i) => i + 1)]
 
-  // Collect all Islamic events in this month for the legend below calendar
-  const islamicThisMonth: { date: string; name: string; emoji: string }[] = []
+  // Collect all Islamic events in this month for the legend
+  const islamicThisMonth = Object.entries(ISLAMIC_EVENT_MAP)
+    .filter(([date]) => {
+      const d = new Date(date + 'T12:00:00')
+      return d.getFullYear() === year && d.getMonth() === month
+    })
+    .flatMap(([date, events]) => events.map(ev => ({ ...ev, date })))
 
   return (
     <>
@@ -65,9 +70,6 @@ export function RoadmapMonthView({ year, month, entries, sessionId, currency, mo
           const isEid = islamicEvents.some(e => e.name.includes('Eid'))
           const isRamadan = islamicEvents.some(e => e.name.includes('Ramadan') || e.name.includes('Laylat') || e.name.includes('Shab'))
           const isArafah = islamicEvents.some(e => e.name.includes('Arafah'))
-
-          // Collect for legend
-          for (const ev of islamicEvents) islamicThisMonth.push({ date: dateStr, ...ev })
 
           let islamicColor = '#C084FC' // purple default
           if (isEid) islamicColor = '#FBBF24'
