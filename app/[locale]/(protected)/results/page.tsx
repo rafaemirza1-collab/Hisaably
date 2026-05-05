@@ -807,7 +807,7 @@ This report is for personal reference only. Consult a qualified scholar for your
             {meetsNisab && zakatPlan && currentSessionId && (
               <ZakatRoadmap
                 sessionId={currentSessionId}
-                annualZakat={zakatPlan.annual_zakat * fxRate}
+                annualZakat={result.zakat_amount_silver * fxRate}
                 currency={displayCurrency}
                 initialSchedule={paymentSchedule}
                 initialEntries={journalEntries}
@@ -820,7 +820,7 @@ This report is for personal reference only. Consult a qualified scholar for your
               currency={displayCurrency}
               userName={userName || undefined}
               madhab={madhab || undefined}
-              annualZakat={zakatPlan ? zakatPlan.annual_zakat * fxRate : undefined}
+              annualZakat={meetsNisab ? result.zakat_amount_silver * fxRate : undefined}
               journalEntries={journalEntries}
               paymentSchedule={paymentSchedule}
               sessionCreatedAt={currentSessionCreatedAt}
