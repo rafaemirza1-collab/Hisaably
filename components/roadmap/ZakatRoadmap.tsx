@@ -100,9 +100,14 @@ export function ZakatRoadmap({ sessionId, annualZakat, currency, initialSchedule
           <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: '#10B981', marginBottom: 4 }}>Zakat Roadmap</p>
           <p style={{ fontSize: 16, fontWeight: 600, color: '#F4EEDF', margin: 0 }}>{year} · {annualZakat.toLocaleString()} {currency}</p>
         </div>
-        <p style={{ fontSize: 12, color: 'rgba(244,238,223,.4)', marginTop: 2, whiteSpace: 'nowrap' }}>
-          {today.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-        </p>
+        <div style={{ textAlign: 'right' }}>
+          <p style={{ fontSize: 20, fontWeight: 700, color: '#F4EEDF', margin: 0, whiteSpace: 'nowrap' }}>
+            {today.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+          </p>
+          <p style={{ fontSize: 12, color: 'rgba(244,238,223,.4)', margin: 0 }}>
+            {today.toLocaleDateString('en-US', { year: 'numeric', weekday: 'long' })}
+          </p>
+        </div>
       </div>
 
       {/* Missed months alert — shown at the top whenever there are missed months */}
