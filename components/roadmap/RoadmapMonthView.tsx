@@ -76,20 +76,34 @@ export function RoadmapMonthView({ year, month, entries, sessionId, currency, mo
           else if (isArafah) islamicColor = '#F97316'
           else if (isRamadan) islamicColor = '#A78BFA'
 
+          // Short label for inside the cell
+          const shortLabel = islamicEvents[0]
+            ? islamicEvents[0].name
+                .replace(' (Day 2)', '').replace(' (Day 3)', '')
+                .replace('1st ', '').replace('Day of ', '')
+                .replace(' Begins', '').replace(' New Year', ' NY')
+                .replace('al-Fitr', 'al-Fitr').replace('al-Adha', 'al-Adha')
+            : ''
+
           return (
             <button key={i} onClick={() => setSelectedDate(dateStr)} style={{
-              aspectRatio: '1', borderRadius: 8,
-              border: isToday ? '1px solid rgba(16,185,129,.5)' : isIslamicDay ? `1px solid ${islamicColor}44` : '1px solid transparent',
-              background: isEid ? 'rgba(251,191,36,.08)' : isIslamicDay ? 'rgba(192,132,252,.07)' : hasPayment ? 'rgba(16,185,129,.15)' : 'rgba(255,255,255,.03)',
-              cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2, padding: 2,
+              borderRadius: 8, aspectRatio: isIslamicDay ? undefined : '1',
+              minHeight: isIslamicDay ? 56 : undefined,
+              border: isToday ? '1px solid rgba(16,185,129,.5)' : isIslamicDay ? `1px solid ${islamicColor}55` : '1px solid transparent',
+              background: isEid ? 'rgba(251,191,36,.1)' : isIslamicDay ? 'rgba(192,132,252,.1)' : hasPayment ? 'rgba(16,185,129,.15)' : 'rgba(255,255,255,.03)',
+              cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2, padding: isIslamicDay ? '6px 3px' : 2,
             }}>
               <span style={{ fontSize: 12, color: isToday ? '#10B981' : isEid ? '#FBBF24' : isIslamicDay ? '#C084FC' : '#F4EEDF', fontWeight: isToday || isIslamicDay ? 700 : 400, lineHeight: 1 }}>
                 {islamicEvents[0]?.emoji ?? ''}{day}
               </span>
+              {isIslamicDay && (
+                <span style={{ fontSize: 9, color: isEid ? '#FBBF24' : '#C084FC', fontWeight: 600, lineHeight: 1.2, textAlign: 'center', wordBreak: 'break-word', maxWidth: '100%', padding: '0 2px' }}>
+                  {shortLabel}
+                </span>
+              )}
               <div style={{ display: 'flex', gap: 2 }}>
                 {hasPayment && <span style={{ width: 4, height: 4, borderRadius: '50%', background: '#10B981', display: 'inline-block' }} />}
                 {hasReminder && <span style={{ width: 4, height: 4, borderRadius: '50%', background: '#F59E0B', display: 'inline-block' }} />}
-                {isIslamicDay && <span style={{ width: 4, height: 4, borderRadius: '50%', background: islamicColor, display: 'inline-block' }} />}
               </div>
             </button>
           )
